@@ -1854,13 +1854,14 @@
 
     <!-- 만족도 조사 2종 (사전 1개, 사후 1개) 안내 허브 -->
         <!-- 만족도 조사 안내 허브 (QR 제거 & https://newsac.kosac.re.kr/public/survey 단일 적용) -->
+        <!-- 만족도 조사 안내 허브 (드롭다운 & 우측 코드 복사) -->
     <section class="section-wrap" id="survey-section" style="display: none; padding-top: 0; margin-bottom: 28px;">
       <div style="background: #ffffff; border: 2px solid #86efac; border-radius: var(--radius-xl); padding: 22px 24px; box-shadow: 0 4px 20px rgba(22, 163, 74, 0.12);">
 
         <!-- 헤더 바 -->
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; flex-wrap: wrap; gap: 12px; border-bottom: 1px solid #e2e8f0; padding-bottom: 14px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 14px;">
           <div>
-            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px;">
               <span class="badge" style="background: #15803d; color: #ffffff; font-weight: 800; font-size: 11px;">
                 한국과학창의재단 공식 만족도 조사
               </span>
@@ -1869,147 +1870,64 @@
               </span>
             </div>
             <h3 style="font-size: 19px; font-weight: 900; color: #0f172a; margin: 0;">
-              📋 지세포중학교 3-2 만족도 조사 참여 안내
+              📋 지세포중학교 3-2 만족도 조사 참여 & 참여코드 복사
             </h3>
-            <p style="font-size: 12.5px; color: #475569; margin: 4px 0 0 0; line-height: 1.5;">
-              설문조사 페이지(<a href="https://newsac.kosac.re.kr/public/survey" target="_blank" style="color:#0284c7; font-weight:700;">newsac.kosac.re.kr/public/survey</a>) 접속 후, 본인 코드를 입력하고 설문에 응답해주세요.
-            </p>
           </div>
-          <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-            <button type="button" onclick="toggleSurveySection(false)" class="btn btn-outline" style="min-height: 36px; padding: 6px 14px; font-size: 12px; color: #64748b;">
-              접기 ✕
-            </button>
+          <button type="button" onclick="toggleSurveySection(false)" class="btn btn-outline" style="min-height: 36px; padding: 6px 14px; font-size: 12px; color: #64748b;">
+            접기 ✕
+          </button>
+        </div>
+
+        <!-- 본인 이름 드롭다운 및 우측 참여코드 복사 바 -->
+        <div style="background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 14px; padding: 20px; margin-bottom: 18px;">
+          <label style="display: block; font-size: 13.5px; font-weight: 800; color: #334155; margin-bottom: 10px;">
+            👤 본인 이름 선택 (선택 시 우측에 참여코드가 표시되고 자동 복사됩니다):
+          </label>
+          
+          <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+            <!-- 드롭다운 (좌측) -->
+            <select id="sectionStudentSelect" onchange="handleStudentSelect(this.value)" style="flex: 1; min-width: 240px; height: 48px; border-radius: 10px; border: 2px solid #10b981; padding: 0 14px; font-size: 14px; font-weight: 800; color: #0f172a; background: #ffffff; cursor: pointer; outline: none; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
+              <option value="">👉 본인 이름을 선택하세요 (수강생 18명)</option>
+              <option value="DGC12P">1. 경*림</option>
+              <option value="L9DZRG">2. 김*주</option>
+              <option value="1HFMQ9">3. 김*라</option>
+              <option value="AZIS12">4. 김*성</option>
+              <option value="R4RWOK">5. 김*헌</option>
+              <option value="FW3XO6">6. 문*영</option>
+              <option value="5LSKI4">7. 민*우</option>
+              <option value="Z4SFPE">8. 백*율</option>
+              <option value="QLS6RP">9. 손*은</option>
+              <option value="B3QO4J">10. 안*정</option>
+              <option value="2ACDLZ">11. 오*빈</option>
+              <option value="56LM9Y">12. 오*서</option>
+              <option value="R1GYJ3">13. 옥*빈</option>
+              <option value="ZKFJX9">14. 이*빈</option>
+              <option value="L9LWWM">15. 제*</option>
+              <option value="B0CQA6">16. 차*주</option>
+              <option value="KL5PH9">17. 천*민</option>
+              <option value="14YI48">18. 황*근</option>
+            </select>
+
+            <!-- 우측 설문조사 참여코드 표시 및 복사 버튼 -->
+            <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+              <div id="secCodeDisplay" style="height: 48px; padding: 0 18px; border-radius: 10px; background: #f1f5f9; border: 2px solid #cbd5e1; font-family: monospace; font-size: 19px; font-weight: 900; letter-spacing: 1.5px; color: #94a3b8; display: flex; align-items: center; justify-content: center; min-width: 120px;">
+                ------
+              </div>
+              <button type="button" id="secCopyBtn" onclick="copySelectedStudentCode()" class="btn btn-primary" style="height: 48px; min-height: 48px; padding: 0 18px; background: #94a3b8; font-weight: 800; font-size: 13.5px; border-radius: 10px; border: none; display: flex; align-items: center; gap: 5px; white-space: nowrap; cursor: not-allowed;" disabled>
+                📋 복사
+              </button>
+            </div>
+          </div>
+
+          <!-- 안내 문구 -->
+          <div id="secCopyNotice" style="display: none; margin-top: 12px; font-size: 12.5px; color: #15803d; font-weight: 700; align-items: center; gap: 6px;">
+            <span>✅ 참여코드가 클립보드에 복사되었습니다! 아래 [만족도 조사 페이지 바로가기] 버튼을 누르고 설문지 첫 번째 칸에 붙여넣기(Ctrl+V) 해주세요.</span>
           </div>
         </div>
 
-        <!-- [1단계] 학생 참여코드 원클릭 찾기 & 복사 영역 -->
-        <div style="background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #eff6ff 100%); border: 2px solid #34d399; border-radius: 16px; padding: 20px 22px; margin-bottom: 20px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.12);">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span style="font-size: 24px;">🔑</span>
-              <div>
-                <h4 style="font-size: 16px; font-weight: 900; color: #065f46; margin: 0;">
-                  1단계. 본인 이름을 눌러 설문 참여코드를 복사하세요!
-                </h4>
-                <p style="font-size: 12px; color: #047857; margin: 2px 0 0 0;">
-                  이름을 누르면 참여코드가 즉시 복사됩니다. 복사된 코드는 설문지 0번 문항(학생 코드)에 붙여넣기(Ctrl+V)하세요.
-                </p>
-              </div>
-            </div>
-            <span class="badge" style="background: #059669; color: #ffffff; font-size: 11px; font-weight: 800; padding: 4px 10px;">
-              지세포중 3-2 수강생 18명
-            </span>
-          </div>
-
-          <div style="display: flex; flex-direction: column; gap: 12px;">
-            <!-- 빠른 이름 버튼 18개 (원클릭 탭) -->
-            <div>
-              <div style="font-size: 12px; font-weight: 800; color: #1e293b; margin-bottom: 8px;">
-                ⚡ 빠른 이름 선택 (이름을 클릭하면 즉시 코드가 복사됩니다):
-              </div>
-              <div id="sectionStudentPillContainer" style="display: flex; flex-wrap: wrap; gap: 6px;">
-                <!-- JS 자동 렌더링 -->
-              </div>
-            </div>
-
-            <!-- 드롭다운 선택기 -->
-            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 4px;">
-              <div style="font-size: 13px; font-weight: 800; color: #1e293b; white-space: nowrap;">
-                👤 드롭다운 선택:
-              </div>
-              <select id="sectionStudentSelect" onchange="handleStudentSelect(this.value)" style="flex: 1; min-width: 260px; height: 42px; border-radius: 10px; border: 2px solid #10b981; padding: 0 14px; font-size: 14px; font-weight: 800; color: #0f172a; background: #ffffff; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.05); outline: none;">
-                <option value="">👉 본인 이름을 선택하세요 (선택 시 코드 자동 복사)</option>
-              </select>
-            </div>
-
-            <!-- 선택된 참여코드 표시 카드 (복사 알림 박스) -->
-            <div id="sectionSelectedCodeCard" style="display: none; background: #ffffff; border: 2px solid #10b981; border-radius: 12px; padding: 14px 18px; margin-top: 4px; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);">
-              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                  <span style="font-size: 28px;">📋</span>
-                  <div>
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                      <span id="secResName" style="font-size: 15px; font-weight: 900; color: #0f172a;">김*주</span>
-                      <span style="font-size: 12px; color: #64748b;">학생의 설문 참여코드:</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 8px; margin-top: 4px;">
-                      <span id="secResCode" style="font-size: 22px; font-family: monospace; font-weight: 900; letter-spacing: 2px; color: #059669; background: #ecfdf5; border: 1.5px solid #a7f3d0; padding: 2px 14px; border-radius: 8px;">
-                        L9DZRG
-                      </span>
-                      <span class="badge" style="background: #10b981; color: #fff; font-size: 11px; font-weight: 800; padding: 3px 8px;">
-                        ✓ 클립보드 복사됨
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                  <button type="button" onclick="copySelectedStudentCode()" class="btn btn-primary" style="background: #059669; font-weight: 800; padding: 8px 16px; font-size: 13px; box-shadow: 0 2px 8px rgba(5, 150, 105, 0.3);">
-                    📋 코드 다시 복사
-                  </button>
-                </div>
-              </div>
-              <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed #e2e8f0; font-size: 12px; color: #166534; font-weight: 600;">
-                💡 <strong>안내:</strong> 코드가 복사되었습니다! 아래 <strong>[만족도 조사 바로가기]</strong>를 누른 후 설문 화면 <strong>0번 문항(학생 코드)</strong>에 붙여넣기(<code>Ctrl + V</code>) 해주세요.
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- [2단계] 설문 문항 필수 선택 항목 가이드 -->
-        <div style="background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border: 2px solid #f59e0b; border-radius: 16px; padding: 20px 22px; margin-bottom: 20px; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.12);">
-          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
-            <span style="font-size: 24px;">⚠️</span>
-            <h4 style="font-size: 16.5px; font-weight: 900; color: #92400e; margin: 0;">
-              2단계. 설문조사 문항 필수 선택 안내 (0~3번 항목)
-            </h4>
-          </div>
-          <p style="font-size: 13px; color: #78350f; margin: 0 0 16px 0; line-height: 1.6;">
-            설문 화면에서 아래 <strong>0번(학생코드 입력)</strong> 및 <strong>1~3번 항목을 정확하게 선택</strong>해주세요!
-          </p>
-
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; align-items: center;">
-            <!-- 좌측: 선택 항목 리스트 -->
-            <div style="background: #ffffff; border: 1.5px solid #fde68a; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
-              <div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: #ecfdf5; border: 1.5px solid #a7f3d0; border-radius: 8px;">
-                <span style="font-weight: 900; color: #065f46; font-size: 13px; min-width: 85px;">0. 학생 코드:</span>
-                <span style="font-size: 13px; font-weight: 800; color: #047857;">👉 본인 참여코드 붙여넣기 (Ctrl+V)</span>
-              </div>
-              <div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: #fff7ed; border: 1.5px solid #fed7aa; border-radius: 8px;">
-                <span style="font-weight: 900; color: #9a3412; font-size: 13px; min-width: 85px;">1. 수강 유형:</span>
-                <span style="background: #ea580c; color: #ffffff; font-weight: 900; padding: 4px 12px; border-radius: 6px; font-size: 13.5px;">방문형</span>
-              </div>
-              <div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 8px;">
-                <span style="font-weight: 900; color: #1e40af; font-size: 13px; min-width: 85px;">2. 운영 기관:</span>
-                <span style="background: #2563eb; color: #ffffff; font-weight: 900; padding: 4px 12px; border-radius: 6px; font-size: 13.5px;">부산 교육대학교</span>
-              </div>
-              <div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: #fdf4ff; border: 1.5px solid #f5d0fe; border-radius: 8px;">
-                <span style="font-weight: 900; color: #86198f; font-size: 13px; min-width: 85px;">3. 프로그램:</span>
-                <span style="background: #9333ea; color: #ffffff; font-weight: 900; padding: 4px 12px; border-radius: 6px; font-size: 12.5px;">데이터로 초록을 구하는 아이(AIoT)수호대</span>
-              </div>
-            </div>
-
-            <!-- 우측: 설문 캡처 이미지 예시 -->
-            <div style="text-align: center;">
-              <div style="background: #ffffff; padding: 8px; border-radius: 12px; border: 1.5px solid #fde68a; box-shadow: 0 4px 12px rgba(0,0,0,0.06); display: inline-block; max-width: 100%;">
-                <img src="./survey-guide.png" alt="설문조사 선택 예시 이미지" style="max-width: 100%; max-height: 230px; object-fit: contain; border-radius: 8px; display: block; margin: 0 auto;">
-              </div>
-              <div style="font-size: 11.5px; color: #92400e; font-weight: 700; margin-top: 6px;">
-                ▲ 실제 설문 화면 (0번 학생코드 입력 / 1~3번 항목 필수 선택)
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- [3단계] 설문조사 바로가기 버튼 (QR 완전 제거) -->
-        <div style="background: #f8fafc; border: 2px solid #cbd5e1; border-radius: 16px; padding: 22px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
-          <div style="font-size: 16px; font-weight: 900; color: #0f172a; margin-bottom: 6px;">
-            🚀 공식 설문조사 사이트 링크
-          </div>
-          <div style="font-size: 13px; color: #475569; margin-bottom: 16px;">
-            아래 버튼을 클릭하여 공식 만족도 조사를 진행해주세요. (링크: <a href="https://newsac.kosac.re.kr/public/survey" target="_blank" style="color:#0284c7; font-weight:700;">https://newsac.kosac.re.kr/public/survey</a>)
-          </div>
-          <a href="https://newsac.kosac.re.kr/public/survey" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; max-width: 540px; margin: 0 auto; justify-content: center; background: #15803d; font-weight: 900; font-size: 16px; padding: 14px 24px; box-shadow: 0 4px 16px rgba(21, 128, 61, 0.35); text-decoration: none;">
+        <!-- 설문조사 바로가기 버튼 (newsac.kosac.re.kr) -->
+        <div style="text-align: center;">
+          <a href="https://newsac.kosac.re.kr/public/survey" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; max-width: 540px; margin: 0 auto; justify-content: center; background: #15803d; font-weight: 900; font-size: 16px; padding: 14px 24px; box-shadow: 0 4px 16px rgba(21, 128, 61, 0.35); text-decoration: none; border-radius: 10px;">
             🚀 만족도 조사 페이지 바로가기 (newsac.kosac.re.kr) ↗
           </a>
         </div>
@@ -2801,135 +2719,87 @@
 
   
 
-  <!-- 만족도 조사 & 학생코드 복사 전용 모달 -->
+  <!-- 만족도 조사 & 학생코드 복사 모달 -->
   <div id="surveyModal" class="modal-overlay hidden" onclick="closeSurveyModal()">
-    <div class="modal-content" style="max-width: 820px; text-align: left;" onclick="event.stopPropagation()">
+    <div class="modal-content" style="max-width: 580px; text-align: left; padding: 24px;" onclick="event.stopPropagation()">
       
       <!-- 모달 상단 헤더 -->
-      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 12px; gap: 10px;">
-        <div>
-          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap;">
-            <span class="badge" style="background: #15803d; color: #ffffff; font-weight: 800; font-size: 11px;">
-              한국과학창의재단 공식 만족도 조사
-            </span>
-            <span class="badge" style="background: #e0f2fe; color: #0284c7; font-weight: 800; font-size: 11px;">
-              지세포중 3-2 수강생 18명
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 14px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 26px;">📋</span>
+          <div>
+            <h3 style="font-size: 18px; font-weight: 900; color: #0f172a; margin: 0;">
+              디지털새싹 만족도 조사 참여
+            </h3>
+            <span style="font-size: 12px; color: #64748b;">
+              지세포중학교 3학년 2반
             </span>
           </div>
-          <h3 style="font-size: 19px; font-weight: 900; color: #0f172a; margin: 0;">
-            📋 디지털새싹 만족도 조사 참여 & 참여코드 복사
-          </h3>
         </div>
         <button type="button" onclick="closeSurveyModal()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #94a3b8; line-height: 1; padding: 4px;">
           ✕
         </button>
       </div>
 
-      <!-- 1. 본인 이름 선택 및 참여코드 원클릭 복사 박스 -->
-      <div style="background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #eff6ff 100%); border: 2px solid #34d399; border-radius: 14px; padding: 18px 20px; margin-bottom: 18px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.1);">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <span style="font-size: 22px;">🔑</span>
-            <div>
-              <div style="font-size: 15px; font-weight: 900; color: #065f46;">
-                1단계. 본인 이름을 누르면 참여코드가 즉시 복사됩니다!
-              </div>
-              <div style="font-size: 12px; color: #047857;">
-                설문 시작 전 코드를 복사한 뒤, 설문 페이지의 '0. 학생 코드' 칸에 붙여넣기하세요.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 18명 빠른 버튼 그리드 -->
-        <div style="display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 12px 0;" id="modalStudentPillContainer">
-          <!-- JS 자동 생성 -->
-        </div>
-
-        <!-- 드롭다운 선택도 제공 -->
-        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-          <span style="font-size: 12.5px; font-weight: 800; color: #334155;">👤 드롭다운 선택:</span>
-          <select id="modalStudentSelect" onchange="handleStudentSelect(this.value)" style="flex: 1; min-width: 220px; height: 38px; border-radius: 8px; border: 1.5px solid #10b981; padding: 0 10px; font-size: 13px; font-weight: 800; color: #0f172a; background: #ffffff;">
-            <option value="">👉 본인 이름을 선택하세요</option>
+      <!-- 본인 이름 드롭다운 및 우측 참여코드 복사 바 -->
+      <div style="background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 14px; padding: 18px; margin-bottom: 20px;">
+        <label style="display: block; font-size: 13px; font-weight: 800; color: #334155; margin-bottom: 8px;">
+          👤 본인 이름 선택 (선택 시 우측에 참여코드가 표시되고 자동 복사됩니다):
+        </label>
+        
+        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+          <!-- 1. 드롭다운 (좌측) -->
+          <select id="modalStudentSelect" onchange="handleStudentSelect(this.value)" style="flex: 1; min-width: 200px; height: 46px; border-radius: 10px; border: 2px solid #10b981; padding: 0 14px; font-size: 14px; font-weight: 800; color: #0f172a; background: #ffffff; cursor: pointer; outline: none; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
+            <option value="">👉 본인 이름을 선택하세요 (수강생 18명)</option>
+            <option value="DGC12P">1. 경*림</option>
+            <option value="L9DZRG">2. 김*주</option>
+            <option value="1HFMQ9">3. 김*라</option>
+            <option value="AZIS12">4. 김*성</option>
+            <option value="R4RWOK">5. 김*헌</option>
+            <option value="FW3XO6">6. 문*영</option>
+            <option value="5LSKI4">7. 민*우</option>
+            <option value="Z4SFPE">8. 백*율</option>
+            <option value="QLS6RP">9. 손*은</option>
+            <option value="B3QO4J">10. 안*정</option>
+            <option value="2ACDLZ">11. 오*빈</option>
+            <option value="56LM9Y">12. 오*서</option>
+            <option value="R1GYJ3">13. 옥*빈</option>
+            <option value="ZKFJX9">14. 이*빈</option>
+            <option value="L9LWWM">15. 제*</option>
+            <option value="B0CQA6">16. 차*주</option>
+            <option value="KL5PH9">17. 천*민</option>
+            <option value="14YI48">18. 황*근</option>
           </select>
-        </div>
 
-        <!-- 코드 복사 결과 카드 -->
-        <div id="modalSelectedCodeCard" style="display: none; background: #ffffff; border: 2px solid #10b981; border-radius: 12px; padding: 12px 16px; margin-top: 12px; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);">
-          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <span style="font-size: 24px;">📋</span>
-              <div>
-                <span id="modalResName" style="font-size: 15px; font-weight: 900; color: #0f172a;">김*주</span>
-                <span style="font-size: 12px; color: #64748b;">학생의 설문 참여코드:</span>
-                <div style="display: flex; align-items: center; gap: 8px; margin-top: 2px;">
-                  <span id="modalResCode" style="font-size: 20px; font-family: monospace; font-weight: 900; letter-spacing: 2px; color: #059669; background: #ecfdf5; border: 1.5px solid #a7f3d0; padding: 2px 10px; border-radius: 6px;">
-                    L9DZRG
-                  </span>
-                  <span class="badge" style="background: #10b981; color: #fff; font-size: 11px; font-weight: 800; padding: 3px 8px;">
-                    ✓ 클립보드 복사 완료
-                  </span>
-                </div>
-              </div>
+          <!-- 2. 우측 설문조사 참여코드 표시 및 복사 버튼 -->
+          <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+            <div id="modalCodeDisplay" style="height: 46px; padding: 0 16px; border-radius: 10px; background: #f1f5f9; border: 2px solid #cbd5e1; font-family: monospace; font-size: 18px; font-weight: 900; letter-spacing: 1.5px; color: #94a3b8; display: flex; align-items: center; justify-content: center; min-width: 110px;">
+              ------
             </div>
-            <button type="button" onclick="copySelectedStudentCode()" class="btn btn-outline" style="min-height: 32px; padding: 4px 12px; font-size: 12px; font-weight: 800; color: #059669; border-color: #10b981;">
-              📋 다시 복사
+            <button type="button" id="modalCopyBtn" onclick="copySelectedStudentCode()" class="btn btn-primary" style="height: 46px; min-height: 46px; padding: 0 16px; background: #94a3b8; font-weight: 800; font-size: 13px; border-radius: 10px; border: none; display: flex; align-items: center; gap: 5px; white-space: nowrap; cursor: not-allowed;" disabled>
+              📋 복사
             </button>
           </div>
         </div>
-      </div>
 
-      <!-- 2. 설문 문항 필수 선택 항목 가이드 -->
-      <div style="background: #fffbeb; border: 1.5px solid #f59e0b; border-radius: 14px; padding: 16px 18px; margin-bottom: 18px;">
-        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-          <span style="font-size: 20px;">⚠️</span>
-          <h4 style="font-size: 15px; font-weight: 900; color: #92400e; margin: 0;">
-            2단계. 설문 화면에서 아래 항목을 반드시 정확히 선택해주세요!
-          </h4>
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; align-items: center;">
-          <div style="background: #ffffff; border: 1.5px solid #fde68a; border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 8px;">
-            <div style="display: flex; align-items: center; gap: 8px; padding: 6px 8px; background: #ecfdf5; border-radius: 6px;">
-              <span style="font-weight: 900; color: #065f46; font-size: 12px; min-width: 80px;">0. 학생 코드:</span>
-              <span style="font-size: 12px; font-weight: 800; color: #047857;">복사한 참여코드 붙여넣기 (Ctrl+V)</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px; padding: 6px 8px; background: #fff7ed; border-radius: 6px;">
-              <span style="font-weight: 900; color: #9a3412; font-size: 12px; min-width: 80px;">1. 수강 유형:</span>
-              <span style="background: #ea580c; color: #ffffff; font-weight: 900; padding: 2px 10px; border-radius: 6px; font-size: 12.5px;">방문형</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px; padding: 6px 8px; background: #eff6ff; border-radius: 6px;">
-              <span style="font-weight: 900; color: #1e40af; font-size: 12px; min-width: 80px;">2. 운영 기관:</span>
-              <span style="background: #2563eb; color: #ffffff; font-weight: 900; padding: 2px 10px; border-radius: 6px; font-size: 12.5px;">부산 교육대학교</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px; padding: 6px 8px; background: #fdf4ff; border-radius: 6px;">
-              <span style="font-weight: 900; color: #86198f; font-size: 12px; min-width: 80px;">3. 프로그램:</span>
-              <span style="background: #9333ea; color: #ffffff; font-weight: 900; padding: 2px 10px; border-radius: 6px; font-size: 11.5px;">데이터로 초록을 구하는 아이(AIoT)수호대</span>
-            </div>
-          </div>
-
-          <div style="text-align: center;">
-            <img src="./survey-guide.png" alt="설문조사 선택 예시 이미지" style="max-width: 100%; max-height: 190px; object-fit: contain; border-radius: 8px; border: 1px solid #fde68a; display: block; margin: 0 auto;">
-            <div style="font-size: 11px; color: #92400e; font-weight: 700; margin-top: 4px;">
-              ▲ 실제 설문 화면 (0번 학생코드 입력 / 1~3번 항목 필수 선택)
-            </div>
-          </div>
+        <!-- 안내 문구 -->
+        <div id="modalCopyNotice" style="display: none; margin-top: 10px; font-size: 12px; color: #15803d; font-weight: 700; align-items: center; gap: 6px;">
+          <span>✅ 참여코드가 클립보드에 복사되었습니다! 아래 설문조사 바로가기 버튼을 누르고 설문지 첫 번째 칸에 붙여넣기(Ctrl+V) 해주세요.</span>
         </div>
       </div>
 
-      <!-- 3. 설문조사 바로가기 버튼 (newsac.kosac.re.kr) -->
-      <div style="display: flex; gap: 10px; justify-content: flex-end; align-items: center; flex-wrap: wrap;">
-        <button type="button" onclick="closeSurveyModal()" class="btn btn-outline" style="min-height: 44px; padding: 8px 18px;">
+      <!-- 설문조사 바로가기 버튼 (newsac.kosac.re.kr) -->
+      <div style="display: flex; gap: 10px; justify-content: flex-end; align-items: center;">
+        <button type="button" onclick="closeSurveyModal()" class="btn btn-outline" style="min-height: 46px; padding: 8px 18px;">
           닫기
         </button>
-        <a href="https://newsac.kosac.re.kr/public/survey" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex: 1; min-width: 280px; justify-content: center; background: #15803d; font-size: 15px; font-weight: 900; padding: 12px 20px; box-shadow: 0 4px 14px rgba(21, 128, 61, 0.35); text-decoration: none;">
-          🚀 만족도 조사 페이지로 이동하기 (newsac.kosac.re.kr) ↗
+        <a href="https://newsac.kosac.re.kr/public/survey" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex: 1; justify-content: center; background: #15803d; font-size: 15px; font-weight: 900; min-height: 46px; padding: 10px 20px; box-shadow: 0 4px 14px rgba(21, 128, 61, 0.35); text-decoration: none; border-radius: 10px;">
+          🚀 설문조사 바로가기 (newsac.kosac.re.kr) ↗
         </a>
       </div>
 
     </div>
   </div>
-
 
   <!-- 토스트 알림창 -->
   <div id="toastBox" class="toast">
@@ -3631,14 +3501,14 @@
       document.getElementById("imgModal").classList.add("hidden");
     }
 
-        // ==========================================
+            // ==========================================
     // 학생 설문조사 및 참여코드 복사 로직
     // ==========================================
     function openSurveyModal() {
       const modal = document.getElementById("surveyModal");
       if (modal) {
         modal.classList.remove("hidden");
-        renderStudentPillsAndSelects();
+        syncStudentSelectUI();
       }
     }
 
@@ -3661,7 +3531,7 @@
         if (headerBtn) headerBtn.classList.add('active');
         if (arrow) arrow.textContent = '설문 닫기 ✕';
         sec.scrollIntoView({ behavior: 'smooth' });
-        renderStudentPillsAndSelects();
+        syncStudentSelectUI();
       } else {
         sec.style.display = 'none';
         if (headerBtn) headerBtn.classList.remove('active');
@@ -3669,15 +3539,73 @@
       }
     }
 
-    // 학생 명단 버튼 및 드롭다운 초기화
-    function renderStudentPillsAndSelects() {
-      const modalPills = document.getElementById("modalStudentPillContainer");
-      const secPills = document.getElementById("sectionStudentPillContainer");
-      const modalSelect = document.getElementById("modalStudentSelect");
-      const secSelect = document.getElementById("sectionStudentSelect");
-      const datalist = document.getElementById("studentDatalist");
+    function handleStudentSelect(code) {
+      if (!code) {
+        currentSelectedStudentCode = "";
+        currentSelectedStudentName = "";
+        updateCodeUI("", "");
+        return;
+      }
+      const st = JISPEO_STUDENT_LIST.find(s => s.code === code);
+      if (st) {
+        currentSelectedStudentCode = st.code;
+        currentSelectedStudentName = st.name;
+        updateCodeUI(st.code, st.name);
+        copyTextToClipboard(st.code, "🎉 " + st.name + " 학생의 참여코드 [" + st.code + "] 복사 완료! 설문지에 붙여넣으세요.");
+      }
+    }
 
-      // 1. Board author datalist
+    function updateCodeUI(code, name) {
+      // Sync dropdowns
+      ['modalStudentSelect', 'sectionStudentSelect'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = code;
+      });
+
+      // Update modal right-side box
+      const modalDisp = document.getElementById("modalCodeDisplay");
+      const modalCopyBtn = document.getElementById("modalCopyBtn");
+      const modalNotice = document.getElementById("modalCopyNotice");
+      if (modalDisp) {
+        modalDisp.textContent = code ? code : "------";
+        modalDisp.style.background = code ? "#ecfdf5" : "#f1f5f9";
+        modalDisp.style.color = code ? "#059669" : "#94a3b8";
+        modalDisp.style.borderColor = code ? "#10b981" : "#cbd5e1";
+      }
+      if (modalCopyBtn) {
+        modalCopyBtn.disabled = !code;
+        modalCopyBtn.style.background = code ? "#059669" : "#94a3b8";
+        modalCopyBtn.style.cursor = code ? "pointer" : "not-allowed";
+        modalCopyBtn.style.boxShadow = code ? "0 2px 8px rgba(5, 150, 105, 0.3)" : "none";
+      }
+      if (modalNotice) {
+        modalNotice.style.display = code ? "flex" : "none";
+      }
+
+      // Update on-page section right-side box
+      const secDisp = document.getElementById("secCodeDisplay");
+      const secCopyBtn = document.getElementById("secCopyBtn");
+      const secNotice = document.getElementById("secCopyNotice");
+      if (secDisp) {
+        secDisp.textContent = code ? code : "------";
+        secDisp.style.background = code ? "#ecfdf5" : "#f1f5f9";
+        secDisp.style.color = code ? "#059669" : "#94a3b8";
+        secDisp.style.borderColor = code ? "#10b981" : "#cbd5e1";
+      }
+      if (secCopyBtn) {
+        secCopyBtn.disabled = !code;
+        secCopyBtn.style.background = code ? "#059669" : "#94a3b8";
+        secCopyBtn.style.cursor = code ? "pointer" : "not-allowed";
+        secCopyBtn.style.boxShadow = code ? "0 2px 8px rgba(5, 150, 105, 0.3)" : "none";
+      }
+      if (secNotice) {
+        secNotice.style.display = code ? "flex" : "none";
+      }
+    }
+
+    function syncStudentSelectUI() {
+      // Board author datalist
+      const datalist = document.getElementById("studentDatalist");
       if (datalist && datalist.children.length === 0) {
         JISPEO_STUDENT_LIST.forEach(st => {
           const opt = document.createElement("option");
@@ -3685,119 +3613,14 @@
           datalist.appendChild(opt);
         });
       }
-
-      // 2. Dropdown Selects
-      [modalSelect, secSelect].forEach(sel => {
-        if (sel && sel.options.length <= 1) {
-          sel.innerHTML = '<option value="">👉 본인 이름을 선택하세요 (클릭 시 자동 복사)</option>';
-          JISPEO_STUDENT_LIST.forEach(st => {
-            const opt = document.createElement("option");
-            opt.value = st.code;
-            opt.textContent = st.num + ". " + st.name + " (참여코드: " + st.code + ")";
-            sel.appendChild(opt);
-          });
-        }
-      });
-
-      // 3. Pill buttons
-      [modalPills, secPills].forEach(container => {
-        if (container && container.children.length === 0) {
-          container.innerHTML = "";
-          JISPEO_STUDENT_LIST.forEach(st => {
-            const btn = document.createElement("button");
-            btn.type = "button";
-            btn.className = "st-code-pill";
-            btn.dataset.code = st.code;
-            btn.dataset.num = st.num;
-            btn.style.cssText = "padding: 6px 12px; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #ffffff; color: #1e293b; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 4px;";
-            btn.innerHTML = '<span style="color:#15803d; font-weight:800;">' + st.num + '.</span> ' + st.name;
-            btn.onclick = () => selectStudentCode(st.code, st.name, st.num);
-            container.appendChild(btn);
-          });
-        }
-      });
-    }
-
-    // 학생 선택 및 코드 복사 실행
-    function selectStudentCode(code, name, num) {
-      currentSelectedStudentCode = code;
-      currentSelectedStudentName = name;
-
-      // 1. Update dropdowns
-      ['modalStudentSelect', 'sectionStudentSelect'].forEach(id => {
-        const sel = document.getElementById(id);
-        if (sel) sel.value = code;
-      });
-
-      // 2. Update pill buttons style
-      document.querySelectorAll('.st-code-pill').forEach(btn => {
-        const bCode = btn.dataset.code;
-        const bNum = btn.dataset.num;
-        if (bCode === code) {
-          btn.style.background = "#15803d";
-          btn.style.color = "#ffffff";
-          btn.style.borderColor = "#15803d";
-          btn.style.boxShadow = "0 2px 8px rgba(21, 128, 61, 0.35)";
-          btn.style.transform = "translateY(-1px)";
-          btn.innerHTML = '✓ <span style="font-weight:900;">' + bNum + '.</span> ' + name;
-        } else {
-          btn.style.background = "#ffffff";
-          btn.style.color = "#1e293b";
-          btn.style.borderColor = "#cbd5e1";
-          btn.style.boxShadow = "none";
-          btn.style.transform = "none";
-          const origSt = JISPEO_STUDENT_LIST.find(s => s.code === bCode);
-          btn.innerHTML = '<span style="color:#15803d; font-weight:800;">' + bNum + '.</span> ' + (origSt ? origSt.name : '');
-        }
-      });
-
-      // 3. Update Result Cards
-      const cardM = document.getElementById("modalSelectedCodeCard");
-      if (cardM) {
-        cardM.style.display = "block";
-        document.getElementById("modalResName").textContent = (num ? num + "번 " : "") + name;
-        document.getElementById("modalResCode").textContent = code;
-      }
-
-      const cardS = document.getElementById("sectionSelectedCodeCard");
-      if (cardS) {
-        cardS.style.display = "block";
-        document.getElementById("secResName").textContent = (num ? num + "번 " : "") + name;
-        document.getElementById("secResCode").textContent = code;
-      }
-
-      // 4. Auto copy to clipboard
-      copyTextToClipboard(code, "🎉 " + name + " 학생의 참여코드 [" + code + "] 복사 완료! 설문지에 붙여넣으세요.");
-    }
-
-    function handleStudentSelect(code) {
-      if (!code) {
-        currentSelectedStudentCode = "";
-        currentSelectedStudentName = "";
-        const cardM = document.getElementById("modalSelectedCodeCard");
-        if (cardM) cardM.style.display = "none";
-        const cardS = document.getElementById("sectionSelectedCodeCard");
-        if (cardS) cardS.style.display = "none";
-        document.querySelectorAll('.st-code-pill').forEach(btn => {
-          btn.style.background = "#ffffff";
-          btn.style.color = "#1e293b";
-          btn.style.borderColor = "#cbd5e1";
-          btn.style.boxShadow = "none";
-          btn.style.transform = "none";
-          const origSt = JISPEO_STUDENT_LIST.find(s => s.code === btn.dataset.code);
-          btn.innerHTML = '<span style="color:#15803d; font-weight:800;">' + btn.dataset.num + '.</span> ' + (origSt ? origSt.name : '');
-        });
-        return;
-      }
-      const st = JISPEO_STUDENT_LIST.find(s => s.code === code);
-      if (st) {
-        selectStudentCode(st.code, st.name, st.num);
+      if (currentSelectedStudentCode) {
+        updateCodeUI(currentSelectedStudentCode, currentSelectedStudentName);
       }
     }
 
     function copySelectedStudentCode() {
       if (currentSelectedStudentCode) {
-        copyTextToClipboard(currentSelectedStudentCode, "🎉 " + currentSelectedStudentName + " 학생의 참여코드 [" + currentSelectedStudentCode + "] 복사 완료!");
+        copyTextToClipboard(currentSelectedStudentCode, "🎉 " + currentSelectedStudentName + " 학생의 참여코드 [" + currentSelectedStudentCode + "] 복사 완료! 설문지에 붙여넣으세요.");
       }
     }
 
