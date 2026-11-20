@@ -11,24 +11,26 @@
   
   <style>
     :root {
-      --primary: #059669;
-      --primary-dark: #064e3b;
-      --primary-deep: #065f46;
-      --primary-light: #ecfdf5;
-      --primary-border: #a7f3d0;
+      --primary: #15803d;
+      --primary-dark: #166534;
+      --primary-light: #f0fdf4;
+      --primary-border: #86efac;
       
-      --secondary: #0284c7;
-      --secondary-light: #f0f9ff;
-      --secondary-border: #bae6fd;
+      --blue: #0284c7;
+      --blue-light: #f0f9ff;
+      --blue-border: #bae6fd;
       
+      --purple: #7c3aed;
+      --purple-light: #faf5ff;
+      --purple-border: #d8b4fe;
+
       --amber: #d97706;
-      --amber-light: #fef3c7;
+      --amber-light: #fffbeb;
       --amber-border: #fde68a;
 
       --text-main: #0f172a;
       --text-body: #334155;
       --text-muted: #64748b;
-      --text-light: #94a3b8;
       
       --bg-page: #f8fafc;
       --bg-card: #ffffff;
@@ -37,11 +39,11 @@
       --radius-sm: 8px;
       --radius-md: 12px;
       --radius-lg: 16px;
-      --radius-xl: 22px;
+      --radius-xl: 20px;
       
-      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 16px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
-      --shadow-lg: 0 12px 28px -4px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+      --shadow-card: 0 4px 14px rgba(15, 23, 42, 0.05);
+      --shadow-hover: 0 10px 25px -4px rgba(15, 23, 42, 0.08);
     }
 
     * {
@@ -60,31 +62,27 @@
       color: var(--text-body);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
       word-break: keep-all;
     }
 
     .container {
       width: 100%;
-      max-width: 1200px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 20px;
     }
 
-    /* 상단 네비게이션 헤더 */
+    /* 1. 상단 헤더 */
     header {
-      background-color: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background-color: #ffffff;
       border-bottom: 1.5px solid var(--border-color);
       position: sticky;
       top: 0;
       z-index: 100;
-      transition: all 0.25s ease;
     }
 
     .header-inner {
-      height: 72px;
+      height: 68px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -94,126 +92,113 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
       color: inherit;
     }
 
     .brand-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
       color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
-      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+      font-size: 20px;
+      box-shadow: 0 3px 10px rgba(34, 197, 94, 0.3);
       flex-shrink: 0;
-      transition: transform 0.2s ease;
-    }
-
-    .brand:hover .brand-icon {
-      transform: scale(1.05);
     }
 
     .brand-title {
-      font-size: 17px;
+      font-size: 16.5px;
       font-weight: 900;
       color: var(--text-main);
-      letter-spacing: -0.02em;
-      line-height: 1.25;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
     .brand-pill {
       font-size: 11px;
       font-weight: 800;
-      color: #059669;
-      background: #ecfdf5;
-      padding: 2px 8px;
-      border-radius: 12px;
-      border: 1px solid #a7f3d0;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 2px 7px;
+      border-radius: 6px;
+      border: 1px solid var(--primary-border);
     }
 
     .brand-sub {
-      font-size: 12px;
-      font-weight: 600;
+      font-size: 11.5px;
       color: var(--text-muted);
-      margin-top: 1px;
+      font-weight: 600;
     }
 
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
-    /* 버튼 스타일 공통 */
+    /* 공통 버튼 */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 7px;
-      font-size: 13.5px;
-      font-weight: 700;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 800;
       padding: 8px 16px;
       border-radius: var(--radius-md);
       border: 1.5px solid transparent;
       cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.2s ease;
       text-decoration: none;
       user-select: none;
+      white-space: nowrap;
     }
 
     .btn-primary {
       background-color: var(--primary);
       color: #ffffff;
-      box-shadow: 0 2px 8px rgba(5, 150, 105, 0.25);
+      box-shadow: 0 2px 8px rgba(21, 128, 61, 0.25);
     }
 
     .btn-primary:hover {
-      background-color: var(--primary-deep);
+      background-color: var(--primary-dark);
       transform: translateY(-1.5px);
-      box-shadow: 0 6px 16px rgba(5, 150, 105, 0.35);
+      box-shadow: 0 4px 14px rgba(21, 128, 61, 0.35);
     }
 
     .btn-outline {
       background-color: #ffffff;
       color: var(--text-body);
-      border-color: var(--border-color);
-      box-shadow: var(--shadow-sm);
+      border-color: #cbd5e1;
     }
 
     .btn-outline:hover {
-      background-color: #f8fafc;
-      border-color: #cbd5e1;
+      background-color: #f1f5f9;
+      border-color: #94a3b8;
       color: var(--text-main);
       transform: translateY(-1.5px);
     }
 
-    /* 상단 만족도 조사 버튼 (화이트 -> 에메랄드 호버) */
+    /* 상단 헤더 설문조사 버튼 */
     #headerSurveyBtn {
-      font-size: 13.5px;
-      font-weight: 800;
-      padding: 8px 16px;
-      min-height: 40px;
       background: #ffffff;
-      color: #0f172a;
-      border: 1.5px solid #cbd5e1;
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-sm);
+      color: var(--primary);
+      border-color: var(--primary-border);
+      box-shadow: 0 2px 6px rgba(21, 128, 61, 0.1);
     }
 
     #headerSurveyBtn:hover {
       background: var(--primary);
       color: #ffffff;
       border-color: var(--primary);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);
+      transform: translateY(-1.5px);
+      box-shadow: 0 4px 12px rgba(21, 128, 61, 0.3);
     }
 
     /* 뱃지 */
@@ -221,10 +206,10 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 800;
-      padding: 3px 9px;
-      border-radius: 9999px;
+      padding: 3px 8px;
+      border-radius: 6px;
       line-height: 1.2;
     }
 
@@ -235,9 +220,15 @@
     }
 
     .badge-blue {
-      background-color: var(--secondary-light);
-      color: var(--secondary);
-      border: 1px solid var(--secondary-border);
+      background-color: var(--blue-light);
+      color: var(--blue);
+      border: 1px solid var(--blue-border);
+    }
+
+    .badge-purple {
+      background-color: var(--purple-light);
+      color: var(--purple);
+      border: 1px solid var(--purple-border);
     }
 
     .badge-amber {
@@ -246,340 +237,243 @@
       border: 1px solid var(--amber-border);
     }
 
-    /* 메인 히어로 배너 */
-    .hero-section {
-      padding: 32px 0 20px 0;
-    }
-
-    .hero-card {
-      background: linear-gradient(135deg, #064e3b 0%, #065f46 45%, #0f172a 100%);
+    /* 2. 메인 히어로 배너 (차분하고 산뜻한 디자인) */
+    .hero-box {
+      margin-top: 24px;
+      background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #ffffff 100%);
+      border: 2px solid var(--primary-border);
       border-radius: var(--radius-xl);
-      padding: 36px 40px;
-      color: #ffffff;
+      padding: 28px 32px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 32px;
-      box-shadow: 0 16px 36px -8px rgba(6, 78, 59, 0.25);
-      position: relative;
-      overflow: hidden;
-      border: 1.5px solid #10b981;
+      gap: 24px;
+      box-shadow: var(--shadow-card);
     }
 
-    .hero-card::after {
-      content: "";
-      position: absolute;
-      top: -40%;
-      right: -10%;
-      width: 450px;
-      height: 450px;
-      background: radial-gradient(circle, rgba(16, 185, 129, 0.25) 0%, rgba(16, 185, 129, 0) 70%);
-      pointer-events: none;
-    }
-
-    .hero-content {
+    .hero-info {
       flex: 1;
-      max-width: 680px;
-      position: relative;
-      z-index: 2;
     }
 
-    .hero-badges {
+    .hero-badges-row {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       flex-wrap: wrap;
-      margin-bottom: 14px;
+      margin-bottom: 8px;
     }
 
-    .hero-tag {
+    .hero-badge-pill {
       font-size: 11.5px;
       font-weight: 800;
-      color: #ecfdf5;
-      background: rgba(255, 255, 255, 0.16);
-      padding: 4px 12px;
-      border-radius: 20px;
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--primary-dark);
+      background: #ffffff;
+      border: 1px solid var(--primary-border);
+      padding: 3px 10px;
+      border-radius: 16px;
     }
 
     .hero-title {
-      font-size: 30px;
+      font-size: 25px;
       font-weight: 900;
-      letter-spacing: -0.03em;
-      line-height: 1.25;
-      margin-bottom: 12px;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
     }
 
     .hero-desc {
-      font-size: 14.5px;
-      opacity: 0.92;
-      line-height: 1.65;
-      margin-bottom: 20px;
+      font-size: 14px;
+      color: var(--text-body);
+      line-height: 1.6;
     }
 
-    .hero-features {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .hero-feature-item {
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: var(--radius-md);
-      padding: 12px 14px;
-      transition: transform 0.2s ease;
-    }
-
-    .hero-feature-item:hover {
-      transform: translateY(-2px);
-      background: rgba(255, 255, 255, 0.18);
-    }
-
-    .hero-feature-title {
-      font-size: 12px;
-      font-weight: 800;
-      color: #6ee7b7;
-      margin-bottom: 3px;
-    }
-
-    .hero-feature-desc {
-      font-size: 13px;
-      font-weight: 600;
-      color: #ffffff;
-    }
-
-    .hero-mascot-wrap {
-      flex-shrink: 0;
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-mascot-img {
-      width: 220px;
-      height: 220px;
+    .hero-mascot {
+      width: 140px;
+      height: 140px;
       object-fit: contain;
-      filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.3));
-      animation: floatMascot 4s ease-in-out infinite alternate;
+      flex-shrink: 0;
+      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.12));
     }
 
-    @keyframes floatMascot {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-8px); }
+    /* 3. 만족도 조사 카드 (중요 인터랙션 카드) */
+    .survey-card {
+      margin-top: 20px;
+      background: #ffffff;
+      border: 2px solid #86efac;
+      border-radius: var(--radius-xl);
+      padding: 20px 24px;
+      box-shadow: 0 4px 16px rgba(21, 128, 61, 0.1);
     }
 
-    /* 상단 3개 퀵 네비게이션 바 (01~03) */
-    .portal-nav-bar {
-      margin-top: 16px;
+    .survey-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .survey-card-title {
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .survey-card-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .survey-action-bar {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+    }
+
+    .survey-select {
+      flex: 1;
+      min-width: 220px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid #10b981;
+      padding: 0 14px;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--text-main);
+      background: #ffffff;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .survey-code-pill {
+      height: 44px;
+      padding: 0 16px;
+      border-radius: var(--radius-md);
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      font-family: monospace;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 100px;
+    }
+
+    .survey-btn-copy {
+      height: 44px;
+      padding: 0 16px;
+      background: #94a3b8;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 13px;
+      border-radius: var(--radius-md);
+      border: none;
+      cursor: not-allowed;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .survey-btn-go {
+      height: 44px;
+      padding: 0 20px;
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 13.5px;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 2px 8px rgba(21, 128, 61, 0.25);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .survey-btn-go:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1.5px);
+    }
+
+    /* 4. 퀵 바로가기 탭 네비게이션 */
+    .quick-nav {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 20px;
       margin-bottom: 24px;
     }
 
-    .portal-nav-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .portal-nav-item {
+    .quick-nav-pill {
       background: #ffffff;
       border: 1.5px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
       text-decoration: none;
       color: inherit;
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 10px;
       box-shadow: var(--shadow-sm);
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .portal-nav-item:hover {
-      background-color: var(--primary-light);
-      border-color: var(--primary-border);
-      transform: translateY(-2.5px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .portal-nav-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: var(--radius-md);
-      background-color: var(--primary-light);
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 15px;
-      font-weight: 900;
-      border: 1.5px solid var(--primary-border);
-      flex-shrink: 0;
       transition: all 0.2s ease;
     }
 
-    .portal-nav-item:hover .portal-nav-icon {
-      background-color: var(--primary);
-      color: #ffffff;
-      border-color: var(--primary);
+    .quick-nav-pill:hover {
+      border-color: var(--primary-border);
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-card);
     }
 
-    .portal-nav-title {
-      font-size: 15px;
-      font-weight: 900;
+    .quick-nav-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      background: #f1f5f9;
       color: var(--text-main);
-      display: block;
-      margin-bottom: 2px;
-    }
-
-    .portal-nav-sub {
       font-size: 12px;
-      color: var(--text-muted);
-      display: block;
-    }
-
-    /* 설문조사 원터치 상단 배너 */
-    .survey-quick-banner {
-      background: #ffffff;
-      border: 1.5px solid #bbf7d0;
-      border-radius: var(--radius-lg);
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 24px;
-      box-shadow: var(--shadow-sm);
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
-
-    .survey-quick-banner:hover {
-      border-color: var(--primary);
-      box-shadow: var(--shadow-md);
-      transform: translateY(-1.5px);
-    }
-
-    /* 섹션 레이아웃 */
-    .section-wrap {
-      padding: 28px 0;
-    }
-
-    .section-header {
-      margin-bottom: 20px;
-    }
-
-    .section-sub {
-      font-size: 12px;
-      font-weight: 800;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .section-title {
-      font-size: 22px;
       font-weight: 900;
-      color: var(--text-main);
-      letter-spacing: -0.02em;
-    }
-
-    .section-desc {
-      font-size: 13.5px;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    /* 카드 그리드 공통 */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      background: #ffffff;
-      border: 1.5px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 22px;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .card:hover {
-      border-color: #cbd5e1;
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .card-top {
-      margin-bottom: 18px;
-    }
-
-    .card-header-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-
-    .card-icon-title {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-
-    .card-icon {
-      font-size: 28px;
-      line-height: 1;
+      justify-content: center;
       flex-shrink: 0;
     }
 
-    .card-title {
-      font-size: 17px;
+    .quick-nav-pill:hover .quick-nav-num {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .quick-nav-text {
+      font-size: 13.5px;
       font-weight: 800;
       color: var(--text-main);
-      letter-spacing: -0.01em;
     }
 
-    .card-desc {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.6;
+    /* 섹션 레이아웃 */
+    .content-section {
+      margin-bottom: 36px;
     }
 
-    /* 차시별 수업 안내 (타임라인 카드) */
-    .curriculum-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+    .section-head {
+      margin-bottom: 14px;
     }
 
-    .day-column {
-      background: #ffffff;
-      border: 1.5px solid var(--border-color);
-      border-radius: var(--radius-xl);
-      padding: 24px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .day-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 16px;
-      margin-bottom: 16px;
-      border-bottom: 1.5px solid #f1f5f9;
-    }
-
-    .day-title {
+    .section-head-title {
       font-size: 18px;
       font-weight: 900;
       color: var(--text-main);
@@ -588,80 +482,180 @@
       gap: 8px;
     }
 
-    .step-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    .section-head-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
     }
 
-    .step-item {
-      background: #f8fafc;
-      border: 1.5px solid #f1f5f9;
-      border-radius: var(--radius-md);
-      padding: 14px 16px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+    /* 카드 그리드 */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 16px;
     }
 
-    .step-item:hover {
+    .simple-card {
       background: #ffffff;
-      border-color: #10b981;
-      transform: translateX(3px);
-      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
     }
 
-    .step-item-head {
+    .simple-card:hover {
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .card-body {
+      margin-bottom: 16px;
+    }
+
+    .card-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .card-title-group {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 8px;
+      gap: 10px;
+      margin-bottom: 6px;
     }
 
-    .step-num-title {
-      font-size: 14.5px;
+    .card-emoji-box {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+    }
+
+    .card-heading {
+      font-size: 15.5px;
       font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .card-text {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* 차시별 수업 교재 (2개 일차) */
+    .curriculum-wrap {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .day-box {
+      background: #ffffff;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .day-box-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1.5px solid #f1f5f9;
+    }
+
+    .day-box-title {
+      font-size: 16px;
+      font-weight: 900;
       color: var(--text-main);
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    .step-pdf-btn {
+    .lesson-item {
+      background: #f8fafc;
+      border: 1.5px solid #f1f5f9;
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .lesson-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .lesson-item:hover {
+      background: #ffffff;
+      border-color: #86efac;
+      transform: translateX(2px);
+      box-shadow: 0 3px 10px rgba(21, 128, 61, 0.08);
+    }
+
+    .lesson-left {
+      min-width: 0;
+    }
+
+    .lesson-title-text {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
+
+    .lesson-sub-text {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .lesson-view-tag {
       font-size: 11.5px;
       font-weight: 800;
       color: var(--primary);
       background: #ecfdf5;
-      padding: 3px 8px;
+      padding: 4px 10px;
       border-radius: 6px;
       border: 1px solid var(--primary-border);
       flex-shrink: 0;
     }
 
-    .step-desc {
-      font-size: 12.5px;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    /* 모달 기본 스타일 */
+    /* 모달 */
     .modal-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(5px);
       z-index: 1000;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      transition: opacity 0.2s ease, visibility 0.2s ease;
+      padding: 16px;
+      transition: opacity 0.2s ease;
     }
 
     .modal-overlay.hidden {
@@ -673,7 +667,6 @@
     .modal-content {
       background: #ffffff;
       border-radius: var(--radius-xl);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
       border: 1.5px solid var(--border-color);
       max-height: 90vh;
       overflow-y: auto;
@@ -682,15 +675,14 @@
     }
 
     .cm-tab-btn {
-      padding: 6px 12px;
-      border-radius: 8px;
+      padding: 5px 10px;
+      border-radius: 6px;
       border: 1.5px solid #cbd5e1;
       background: #ffffff;
       font-size: 12px;
       font-weight: 700;
       color: #475569;
       cursor: pointer;
-      transition: all 0.2s ease;
       white-space: nowrap;
     }
 
@@ -698,10 +690,9 @@
       background: var(--primary);
       color: #ffffff;
       border-color: var(--primary);
-      box-shadow: 0 2px 6px rgba(5, 150, 105, 0.3);
     }
 
-    /* 토스트 알림 */
+    /* 토스트 */
     .toast {
       position: fixed;
       bottom: 24px;
@@ -709,19 +700,17 @@
       transform: translateX(-50%) translateY(100px);
       background: #0f172a;
       color: #ffffff;
-      padding: 12px 24px;
-      border-radius: 9999px;
-      font-size: 13.5px;
-      font-weight: 700;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
       z-index: 2000;
       opacity: 0;
       pointer-events: none;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.25s ease;
       display: flex;
       align-items: center;
-      gap: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      gap: 6px;
     }
 
     .toast.show {
@@ -731,38 +720,38 @@
 
     /* 푸터 */
     footer {
-      background: #ffffff;
       border-top: 1.5px solid var(--border-color);
-      padding: 32px 0;
-      margin-top: 48px;
+      padding: 24px 0;
+      margin-top: 40px;
       text-align: center;
-      font-size: 12.5px;
+      font-size: 12px;
       color: var(--text-muted);
+      background: #ffffff;
     }
 
-    /* 모바일 반응형 미디어 쿼리 */
-    @media (max-width: 900px) {
-      .hero-card {
+    @media (max-width: 768px) {
+      .hero-box {
         flex-direction: column;
+        padding: 20px;
         align-items: flex-start;
-        padding: 28px 24px;
-        gap: 20px;
       }
-      .hero-title {
-        font-size: 24px;
-      }
-      .hero-mascot-wrap {
+      .hero-mascot {
         align-self: center;
+        width: 110px;
+        height: 110px;
       }
-      .hero-mascot-img {
-        width: 170px;
-        height: 170px;
-      }
-      .portal-nav-grid {
+      .quick-nav {
         grid-template-columns: 1fr;
       }
-      .curriculum-grid {
+      .curriculum-wrap {
         grid-template-columns: 1fr;
+      }
+      .survey-action-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .survey-btn-go {
+        width: 100%;
       }
     }
   </style>
@@ -775,7 +764,7 @@
       <div class="header-inner">
         <a href="#" class="brand">
           <div class="brand-icon">🌱</div>
-          <div class="brand-text">
+          <div>
             <div class="brand-title">
               지세포중학교 3-2
               <span class="brand-pill">디지털새싹 AIoT</span>
@@ -788,8 +777,8 @@
           <button type="button" id="headerSurveyBtn" onclick="openSurveyModal()" class="btn" title="만족도 조사 참여코드 복사 및 바로가기">
             <span>📋</span> 만족도 조사 (학생코드 복사)
           </button>
-          <button onclick="openSiteQrModal()" class="btn btn-outline" style="font-size: 13px; padding: 7px 12px; min-height: 40px;">
-            <span>📱</span> 포털 접속 QR
+          <button onclick="openSiteQrModal()" class="btn btn-outline" style="min-height: 38px; padding: 6px 12px; font-size: 12px;">
+            <span>📱</span> 스마트폰 접속 QR
           </button>
         </div>
       </div>
@@ -798,196 +787,208 @@
 
   <main class="container">
 
-    <!-- 히어로 배너 섹션 -->
-    <section class="hero-section">
-      <div class="hero-card">
-        <div class="hero-content">
-          <div class="hero-badges">
-            <span class="hero-tag">🌱 1일차 11월 23일(월)</span>
-            <span class="hero-tag">🌿 2일차 11월 26일(목)</span>
-            <span class="hero-tag">총 8차시 수업</span>
-          </div>
-          
-          <h1 class="hero-title">
-            데이터로 초록을 구하는 아이(AIoT) 수호대
-          </h1>
-          
-          <p class="hero-desc">
-            우리가 살아가는 환경과 식물의 문제를 <strong>센서 데이터</strong>로 관찰하고, <strong>인공지능(AI)과 마이크로비트 사물인터넷(IoT)</strong> 기술을 결합하여 식물의 생명을 지키는 자동 스마트팜을 직접 설계·구현하는 창의 융합 컴퓨팅 실습 프로그램입니다.
-          </p>
-
-          <div class="hero-features">
-            <div class="hero-feature-item">
-              <div class="hero-feature-title">데이터 탐색</div>
-              <div class="hero-feature-desc">빛·토양 수분 실측</div>
-            </div>
-            <div class="hero-feature-item">
-              <div class="hero-feature-title">AI 머신러닝</div>
-              <div class="hero-feature-desc">식물 잎 이미지 분류</div>
-            </div>
-            <div class="hero-feature-item">
-              <div class="hero-feature-title">자동 제어(AIoT)</div>
-              <div class="hero-feature-desc">급수 펌프 & LED 조명</div>
-            </div>
-          </div>
+    <!-- 히어로 안내 배너 -->
+    <div class="hero-box">
+      <div class="hero-info">
+        <div class="hero-badges-row">
+          <span class="hero-badge-pill">🌱 1일차 11월 23일 (월)</span>
+          <span class="hero-badge-pill">🌿 2일차 11월 26일 (목)</span>
+          <span class="hero-badge-pill">총 8차시 수업</span>
         </div>
-
-        <div class="hero-mascot-wrap">
-          <img src="./smartfarm-character.png" alt="스마트팜 AIoT 마스코트" class="hero-mascot-img">
-        </div>
+        <h1 class="hero-title">
+          데이터로 초록을 구하는 아이(AIoT) 수호대
+        </h1>
+        <p class="hero-desc">
+          센서로 식물의 상태를 측정하고, 인공지능(AI)과 마이크로비트로 식물을 돌보는 스마트팜을 직접 만들어보는 소프트웨어 실습 수업입니다.
+        </p>
       </div>
-    </section>
+      <img src="./smartfarm-character.png" alt="스마트팜 마스코트" class="hero-mascot">
+    </div>
 
-    <!-- 메인 퀵 네비게이션 바 (01~03) -->
-    <nav class="portal-nav-bar" aria-label="수업 바로가기 메뉴">
-      <div class="portal-nav-grid">
-        <a href="#sites" class="portal-nav-item">
-          <div class="portal-nav-icon">01</div>
-          <div class="portal-nav-text">
-            <span class="portal-nav-title">수업 필수 사이트</span>
-            <span class="portal-nav-sub">메이크코드 • 티처블머신 3선</span>
-          </div>
-        </a>
-
-        <a href="#downloads" class="portal-nav-item">
-          <div class="portal-nav-icon">02</div>
-          <div class="portal-nav-text">
-            <span class="portal-nav-title">수업 자료 드라이브</span>
-            <span class="portal-nav-sub">실습 펌웨어 • 회로도 6종</span>
-          </div>
-        </a>
-
-        <a href="#curriculum" class="portal-nav-item">
-          <div class="portal-nav-icon">03</div>
-          <div class="portal-nav-text">
-            <span class="portal-nav-title">차시별 수업 안내</span>
-            <span class="portal-nav-sub">1일차(11.23) • 2일차(11.26) 교안</span>
-          </div>
-        </a>
-      </div>
-    </nav>
-
-    <!-- 상단 만족도 조사 원터치 안내 배너 -->
-    <div class="survey-quick-banner" onclick="openSurveyModal()">
-      <div style="display: flex; align-items: center; gap: 12px; text-align: left;">
-        <span style="font-size: 24px;">📋</span>
+    <!-- 만족도 조사 원터치 참여 카드 -->
+    <div class="survey-card">
+      <div class="survey-card-header">
         <div>
-          <div style="font-size: 14.5px; font-weight: 900; color: #0f172a; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-            디지털새싹 공식 만족도 조사 (학생코드 복사 & 바로가기)
-            <span class="badge" style="background: #15803d; color: #fff; font-size: 11px; font-weight: 800; padding: 2px 8px;">★ 1일차 사전 / 2일차 사후 필수</span>
+          <div class="survey-card-title">
+            <span>📋</span>
+            <span>디지털새싹 만족도 조사 참여</span>
+            <span class="badge badge-primary">★ 필수 설문</span>
           </div>
-          <div style="font-size: 12px; color: #475569; margin-top: 2px;">수료 필수: 본인 이름을 선택하면 참여코드가 자동 복사되며 설문 페이지로 바로 이동할 수 있습니다.</div>
+          <div class="survey-card-desc">
+            이름을 선택하면 참여코드가 자동 복사됩니다. 복사 후 <strong>[설문조사 바로가기]</strong>를 눌러 첫 칸에 붙여넣기(Ctrl+V) 해주세요.
+          </div>
         </div>
       </div>
-      <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
-        <span style="font-size: 12.5px; font-weight: 900; color: #15803d; background: #ecfdf5; padding: 6px 14px; border-radius: 20px; border: 1px solid #86efac;">
-          코드 복사 & 설문 열기 ↗
-        </span>
+
+      <div class="survey-action-bar">
+        <!-- 1. 이름 선택 -->
+        <select id="sectionStudentSelect" onchange="handleStudentSelect(this.value)" class="survey-select">
+          <option value="">👉 본인 이름을 선택하세요 (수강생 18명)</option>
+          <option value="DGC12P">1. 경*림</option>
+          <option value="L9DZRG">2. 김*주</option>
+          <option value="1HFMQ9">3. 김*라</option>
+          <option value="AZIS12">4. 김*성</option>
+          <option value="R4RWOK">5. 김*헌</option>
+          <option value="FW3XO6">6. 문*영</option>
+          <option value="5LSKI4">7. 민*우</option>
+          <option value="Z4SFPE">8. 백*율</option>
+          <option value="QLS6RP">9. 손*은</option>
+          <option value="B3QO4J">10. 안*정</option>
+          <option value="2ACDLZ">11. 오*빈</option>
+          <option value="56LM9Y">12. 오*서</option>
+          <option value="R1GYJ3">13. 옥*빈</option>
+          <option value="ZKFJX9">14. 이*빈</option>
+          <option value="L9LWWM">15. 제*</option>
+          <option value="B0CQA6">16. 차*주</option>
+          <option value="KL5PH9">17. 천*민</option>
+          <option value="14YI48">18. 황*근</option>
+        </select>
+
+        <!-- 2. 코드 표시 및 복사 -->
+        <div style="display: flex; gap: 6px; align-items: center;">
+          <div id="secCodeDisplay" class="survey-code-pill">------</div>
+          <button type="button" id="secCopyBtn" onclick="copySelectedStudentCode()" class="survey-btn-copy" disabled>
+            📋 복사
+          </button>
+        </div>
+
+        <!-- 3. 설문조사 바로가기 버튼 -->
+        <a href="https://newsac.kosac.re.kr/public/survey" target="_blank" rel="noopener noreferrer" class="survey-btn-go">
+          🚀 설문조사 바로가기 (newsac.kosac.re.kr) ↗
+        </a>
+      </div>
+
+      <div id="secCopyNotice" style="display: none; margin-top: 8px; font-size: 12px; color: var(--primary); font-weight: 700;">
+        ✅ 코드가 복사되었습니다! 설문조사 페이지 첫 번째 칸에 붙여넣기(Ctrl + V) 하세요.
       </div>
     </div>
 
+    <!-- 바로가기 퀵 네비게이션 (3개 핵심 영역) -->
+    <nav class="quick-nav" aria-label="수업 바로가기">
+      <a href="#sites" class="quick-nav-pill">
+        <span class="quick-nav-num">1</span>
+        <span class="quick-nav-text">수업 활용 사이트 (3개)</span>
+      </a>
+      <a href="#downloads" class="quick-nav-pill">
+        <span class="quick-nav-num">2</span>
+        <span class="quick-nav-text">실습 파일 다운로드 (6개)</span>
+      </a>
+      <a href="#curriculum" class="quick-nav-pill">
+        <span class="quick-nav-num">3</span>
+        <span class="quick-nav-text">수업 교재 보기 (1~8차시)</span>
+      </a>
+    </nav>
+
     <!-- ==========================================
-         섹션 1: 수업 필수 사이트
+         01. 수업 활용 사이트
          ========================================== -->
-    <section id="sites" class="section-wrap">
-      <div class="section-header">
-        <span class="section-sub">Essential Web Tools</span>
-        <h2 class="section-title">01. 수업 필수 사이트</h2>
-        <div class="section-desc">스마트팜 코딩과 인공지능 모델 학습에 필요한 웹 브라우저 기반 실습 도구입니다. 별도의 설치 없이 바로 접속할 수 있습니다.</div>
+    <section id="sites" class="content-section">
+      <div class="section-head">
+        <div class="section-head-title">
+          <span>🌐</span>
+          <span>01. 수업 활용 사이트</span>
+        </div>
+        <div class="section-head-desc">
+          스마트팜 코딩과 인공지능 실습에 접속하는 공식 웹사이트입니다. 설치 없이 바로 열립니다.
+        </div>
       </div>
 
-      <div class="cards-grid">
+      <div class="grid-3">
         <!-- 1. 메이크코드 -->
-        <div class="card">
-          <div class="card-top">
-            <div class="card-header-bar">
-              <span class="badge badge-primary">하드웨어 코딩</span>
-              <span style="font-size: 11.5px; font-weight: 700; color: #059669;">1~8차시 공통</span>
+        <div class="simple-card">
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="badge badge-primary">코딩 실습</span>
+              <span style="font-size: 11px; color: var(--text-muted);">1~8차시 계속 사용</span>
             </div>
-            <div class="card-icon-title">
-              <span class="card-icon">⚡</span>
-              <h3 class="card-title">Microsoft MakeCode</h3>
+            <div class="card-title-group">
+              <div class="card-emoji-box">⚡</div>
+              <div class="card-heading">Microsoft MakeCode (메이크코드)</div>
             </div>
-            <p class="card-desc">
-              마이크로비트(micro:bit) 블록 코딩 플랫폼입니다. 조도·토양수분 센서값을 읽고 워터펌프와 레인보우 LED를 제어하는 규칙을 코딩합니다.
+            <p class="card-text">
+              마이크로비트를 블록으로 코딩하는 사이트입니다. 센서값을 측정하고 펌프와 조명을 작동시키는 규칙을 만듭니다.
             </p>
           </div>
           <a href="https://makecode.microbit.org/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">
-            메이크코드 접속하기 ↗
+            메이크코드 바로 열기 ↗
           </a>
         </div>
 
         <!-- 2. 티처블머신 -->
-        <div class="card">
-          <div class="card-top">
-            <div class="card-header-bar">
-              <span class="badge badge-blue">인공지능 머신러닝</span>
-              <span style="font-size: 11.5px; font-weight: 700; color: #0284c7;">4, 7차시 핵심</span>
+        <div class="simple-card">
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="badge badge-blue">인공지능(AI) 학습</span>
+              <span style="font-size: 11px; color: var(--text-muted);">4, 7차시 사용</span>
             </div>
-            <div class="card-icon-title">
-              <span class="card-icon">🌿</span>
-              <h3 class="card-title">Google Teachable Machine</h3>
+            <div class="card-title-group">
+              <div class="card-emoji-box">🌿</div>
+              <div class="card-heading">Google Teachable Machine (티처블머신)</div>
             </div>
-            <p class="card-desc">
-              구글의 노코드 이미지 분류 학습 플랫폼입니다. 정상 식물 잎과 마른 잎, 병든 잎 사진 데이터를 업로드하여 AI 식물 의사 모델을 훈련시킵니다.
+            <p class="card-text">
+              식물 잎 사진을 컴퓨터에게 공부시키는 사이트입니다. 건강한 잎과 시든 잎을 스스로 구별하는 AI 모델을 만듭니다.
             </p>
           </div>
-          <a href="https://teachablemachine.withgoogle.com/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="width: 100%; border-color: #7dd3fc; color: #0369a1; font-weight: 800;">
-            티처블머신 접속하기 ↗
+          <a href="https://teachablemachine.withgoogle.com/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="width: 100%; border-color: #7dd3fc; color: #0284c7; font-weight: 800;">
+            티처블머신 바로 열기 ↗
           </a>
         </div>
 
         <!-- 3. 엔트리 -->
-        <div class="card">
-          <div class="card-top">
-            <div class="card-header-bar">
-              <span class="badge badge-amber">AI 모델 연동</span>
-              <span style="font-size: 11.5px; font-weight: 700; color: #d97706;">연계 실습</span>
+        <div class="simple-card">
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="badge badge-amber">카메라 연동</span>
+              <span style="font-size: 11px; color: var(--text-muted);">연계 실습</span>
             </div>
-            <div class="card-icon-title">
-              <span class="card-icon">🚀</span>
-              <h3 class="card-title">Entry (엔트리)</h3>
+            <div class="card-title-group">
+              <div class="card-emoji-box">🚀</div>
+              <div class="card-heading">Entry (엔트리)</div>
             </div>
-            <p class="card-desc">
-              학습된 AI 머신러닝 모델과 웹캠 비전 데이터를 연동하여 스마트팜 모니터링 대시보드와 인터랙티브 알림을 시각화합니다.
+            <p class="card-text">
+              컴퓨터 웹캠 카메라로 식물을 비추고, AI가 판별한 건강 상태를 모니터 화면에 예쁘게 보여주는 사이트입니다.
             </p>
           </div>
           <a href="https://playentry.org/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="width: 100%; border-color: #fde68a; color: #b45309; font-weight: 800;">
-            엔트리 사이트 바로가기 ↗
+            엔트리 바로 열기 ↗
           </a>
         </div>
       </div>
     </section>
 
     <!-- ==========================================
-         섹션 2: 수업 자료 드라이브
+         02. 실습 파일 다운로드
          ========================================== -->
-    <section id="downloads" class="section-wrap">
-      <div class="section-header">
-        <span class="section-sub">Resource Library</span>
-        <h2 class="section-title">02. 수업 자료 드라이브</h2>
-        <div class="section-desc">수업 실습에 필요한 공식 펌웨어(.hex), 회로도, 실습 이미지 및 데이터 압축파일입니다.</div>
+    <section id="downloads" class="content-section">
+      <div class="section-head">
+        <div class="section-head-title">
+          <span>📁</span>
+          <span>02. 실습 파일 다운로드</span>
+        </div>
+        <div class="section-head-desc">
+          수업 시간에 컴퓨터에 내려받아 사용할 스마트팜 코딩 파일, 전선 연결 그림, 사진 자료입니다.
+        </div>
       </div>
 
-      <div class="cards-grid">
-        <!-- 1. 참고 회로도 -->
-        <div class="card" style="border: 2px solid #bae6fd; background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%);">
-          <div class="card-top">
-            <div class="card-header-bar">
-              <span class="badge badge-blue">★ 필수 하드웨어 배선</span>
-              <span style="font-size: 11px; font-weight: 800; color: #0369a1;">모달 확대 지원</span>
+      <div class="grid-3">
+        <!-- 1. 스마트팜 참고 회로도 -->
+        <div class="simple-card" style="border: 2px solid #bae6fd; background: #f0f9ff;">
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="badge badge-blue">★ 필수 전선 연결 그림</span>
+              <span style="font-size: 11px; font-weight: 800; color: #0284c7;">확대 보기 지원</span>
             </div>
-            <div class="card-icon-title">
-              <span class="card-icon">🔌</span>
-              <h3 class="card-title">스마트팜 AIoT 참고 회로도</h3>
+            <div class="card-title-group">
+              <div class="card-emoji-box" style="background:#ffffff;">🔌</div>
+              <div class="card-heading">스마트팜 전선 연결도 (회로도)</div>
             </div>
-            <p class="card-desc">
-              마이크로비트 IoT 확장보드와 빛 센서, 토양 수분 센서, 릴레이 모듈, 워터펌프, 레인보우 LED의 올바른 핀 번호 결합 배선도입니다.
+            <p class="card-text">
+              빛 센서, 토양 수분 센서, 워터펌프, 레인보우 LED 전선을 보드 어디에 꽂아야 하는지 한눈에 보여주는 그림입니다.
             </p>
           </div>
           <div style="display: flex; gap: 8px;">
-            <button type="button" onclick="openCircuitModal()" class="btn btn-primary" style="flex: 2; background: #0284c7; font-weight: 800;">
-              🔍 회로도 크게보기
+            <button type="button" onclick="openCircuitModal()" class="btn btn-primary" style="flex: 2; background: #0284c7;">
+              🔍 그림 크게보기
             </button>
             <a href="./smartfarm-circuit.png" download="스마트팜_참고_회로도.png" class="btn btn-outline" style="flex: 1; padding: 6px 10px; font-size: 12px;">
               💾 저장
@@ -996,83 +997,83 @@
         </div>
 
         <!-- 2. 식물의사.hex -->
-        <div class="card">
-          <div class="card-top">
-            <div class="card-header-bar">
-              <span class="badge badge-primary">micro:bit 펌웨어</span>
-              <span style="font-size: 11px; color: #64748b;">.hex 파일</span>
+        <div class="simple-card">
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="badge badge-primary">완성 코딩 파일</span>
+              <span style="font-size: 11px; color: var(--text-muted);">.hex</span>
             </div>
-            <div class="card-icon-title">
-              <span class="card-icon">🤖</span>
-              <h3 class="card-title">식물의사 펌웨어 (.hex)</h3>
+            <div class="card-title-group">
+              <div class="card-emoji-box">🤖</div>
+              <div class="card-heading">식물 지킴이 코딩 파일 (식물의사.hex)</div>
             </div>
-            <p class="card-desc">
-              토양 수분 측정값에 따라 워터펌프 릴레이를 자동 구동하고 빛 센서에 반응하는 스마트팜 통합 제어 펌웨어 파일입니다.
+            <p class="card-text">
+              흙이 마르면 자동으로 물을 주고 불빛으로 식물 상태를 알려주는 마이크로비트 완성 코딩 파일입니다.
             </p>
           </div>
           <a href="./자료드라이브(다운받아주세요)/microbit-식물의사.hex" download="microbit-식물의사.hex" class="btn btn-outline" style="width: 100%; border-color: #86efac; color: #15803d; font-weight: 800;">
-            💾 microbit-식물의사.hex 다운로드
+            💾 코딩 파일 받기 (.hex)
           </a>
         </div>
 
-        <!-- 3. 블루투스 연결.hex -->
-        <div class="card">
-          <div class="card-top">
-            <div class="card-header-bar">
-              <span class="badge badge-blue">무선 통신</span>
-              <span style="font-size: 11px; color: #64748b;">.hex 파일</span>
+        <!-- 3. 블루투스연결.hex -->
+        <div class="simple-card">
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="badge badge-blue">무선 연결 파일</span>
+              <span style="font-size: 11px; color: var(--text-muted);">.hex</span>
             </div>
-            <div class="card-icon-title">
-              <span class="card-icon">📡</span>
-              <h3 class="card-title">블루투스 무선 연결 (.hex)</h3>
+            <div class="card-title-group">
+              <div class="card-emoji-box">📡</div>
+              <div class="card-heading">블루투스 무선 연결 파일 (.hex)</div>
             </div>
-            <p class="card-desc">
-              마이크로비트와 PC를 무선으로 페어링하여 실시간 센서 스트림 데이터를 웹 브라우저로 전송하기 위한 블루투스 브릿지 펌웨어입니다.
+            <p class="card-text">
+              마이크로비트와 컴퓨터를 케이블 없이 블루투스로 무선 연결할 때 사용하는 파일입니다.
             </p>
           </div>
-          <a href="./자료드라이브(다운받아주세요)/microbit-블루투스연결.hex" download="microbit-블루투스연결.hex" class="btn btn-outline" style="width: 100%; border-color: #7dd3fc; color: #0369a1; font-weight: 800;">
-            💾 블루투스연결.hex 다운로드
+          <a href="./자료드라이브(다운받아주세요)/microbit-블루투스연결.hex" download="microbit-블루투스연결.hex" class="btn btn-outline" style="width: 100%; border-color: #7dd3fc; color: #0284c7; font-weight: 800;">
+            💾 무선 연결 파일 받기 (.hex)
           </a>
         </div>
 
         <!-- 4. 4차시 식물 데이터셋 -->
-        <div class="card">
-          <div class="card-top">
-            <div class="card-header-bar">
-              <span class="badge badge-primary">AI 이미지 데이터셋</span>
-              <span style="font-size: 11px; color: #64748b;">.zip 압축파일</span>
+        <div class="simple-card">
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="badge badge-purple">AI 공부용 사진</span>
+              <span style="font-size: 11px; color: var(--text-muted);">.zip</span>
             </div>
-            <div class="card-icon-title">
-              <span class="card-icon">📦</span>
-              <h3 class="card-title">4차시 식물 데이터셋 (.zip)</h3>
+            <div class="card-title-group">
+              <div class="card-emoji-box">📦</div>
+              <div class="card-heading">식물 잎 사진 모음 (4차시 식물데이터.zip)</div>
             </div>
-            <p class="card-desc">
-              티처블머신 학습용 식물 잎 이미지 분류 샘플 데이터입니다. 정상 상태와 수분 부족 상태의 잎 사진들이 라벨별로 분류되어 있습니다.
+            <p class="card-text">
+              티처블머신 AI에게 학습시킬 정상 잎과 아픈 잎 사진들이 정리되어 들어있는 압축 파일입니다.
             </p>
           </div>
           <a href="./자료드라이브(다운받아주세요)/4차시 식물데이터.zip" download="4차시_식물데이터.zip" class="btn btn-outline" style="width: 100%;">
-            💾 4차시 식물데이터.zip 다운로드
+            💾 사진 압축파일 받기 (.zip)
           </a>
         </div>
 
-        <!-- 5. 식물 데이터 출력용 이미지 -->
-        <div class="card">
-          <div class="card-top">
-            <div class="card-header-bar">
-              <span class="badge badge-amber">인쇄/출력 자료</span>
-              <span style="font-size: 11px; color: #64748b;">.png 이미지</span>
+        <!-- 5. 카메라 테스트용 그림 -->
+        <div class="simple-card">
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="badge badge-amber">카메라 시험용</span>
+              <span style="font-size: 11px; color: var(--text-muted);">.png</span>
             </div>
-            <div class="card-icon-title">
-              <span class="card-icon">🖼️</span>
-              <h3 class="card-title">식물 데이터 출력용 이미지</h3>
+            <div class="card-title-group">
+              <div class="card-emoji-box">🖼️</div>
+              <div class="card-heading">카메라 테스트용 식물 그림 (.png)</div>
             </div>
-            <p class="card-desc">
-              티처블머신 웹캠 테스트 시 카메라에 비추어 식물 건강 상태를 테스트할 수 있는 고해상도 컬러 잎 카드 이미지입니다.
+            <p class="card-text">
+              웹캠에 비추어 내가 만든 AI 식물 의사가 건강한 잎을 잘 맞히는지 시험해보는 그림 자료입니다.
             </p>
           </div>
           <div style="display: flex; gap: 8px;">
             <button type="button" onclick="openImageModal('./자료드라이브(다운받아주세요)/식물 데이터 출력용 이미지.png')" class="btn btn-outline" style="flex: 2; font-weight: 800;">
-              🔍 크게보기
+              🔍 그림 보기
             </button>
             <a href="./자료드라이브(다운받아주세요)/식물 데이터 출력용 이미지.png" download="식물_데이터_출력용_이미지.png" class="btn btn-outline" style="flex: 1; padding: 6px 10px; font-size: 12px;">
               💾 저장
@@ -1080,130 +1081,126 @@
           </div>
         </div>
 
-        <!-- 6. 테스트용 추가 미션 -->
-        <div class="card">
-          <div class="card-top">
-            <div class="card-header-bar">
+        <!-- 6. 추가 미션 -->
+        <div class="simple-card">
+          <div class="card-body">
+            <div class="card-top-row">
               <span class="badge badge-primary">도전 과제</span>
-              <span style="font-size: 11px; color: #64748b;">.zip 압축파일</span>
+              <span style="font-size: 11px; color: var(--text-muted);">.zip</span>
             </div>
-            <div class="card-icon-title">
-              <span class="card-icon">🎯</span>
-              <h3 class="card-title">테스트용 추가 미션 (.zip)</h3>
+            <div class="card-title-group">
+              <div class="card-emoji-box">🎯</div>
+              <div class="card-heading">도전 실습 파일 (테스트용 추가미션.zip)</div>
             </div>
-            <p class="card-desc">
-              스마트팜 기본 조립을 완료한 학생들을 위한 심화 실습 예제 및 센서 응용 미션 코딩 패키지입니다.
+            <p class="card-text">
+              기본 조립과 코딩을 다 끝낸 친구들이 스마트팜에 더 멋진 기능을 추가해볼 수 있는 미션 파일입니다.
             </p>
           </div>
           <a href="./자료드라이브(다운받아주세요)/테스트용 - 추가미션.zip" download="테스트용_추가미션.zip" class="btn btn-outline" style="width: 100%;">
-            💾 추가미션.zip 다운로드
+            💾 추가 미션 받기 (.zip)
           </a>
         </div>
       </div>
     </section>
 
     <!-- ==========================================
-         섹션 3: 차시별 수업 안내 & 교안 뷰어
+         03. 수업 교재 보기 (1~8차시)
          ========================================== -->
-    <section id="curriculum" class="section-wrap">
-      <div class="section-header">
-        <span class="section-sub">Curriculum Timeline</span>
-        <h2 class="section-title">03. 차시별 수업 안내</h2>
-        <div class="section-desc">1일차 11월 23일(월) 1~4차시 / 2일차 11월 26일(목) 5~8차시 • <strong>각 차시를 클릭하면 해당 수업 교안을 팝업으로 즉시 열람</strong>할 수 있습니다.</div>
+    <section id="curriculum" class="content-section">
+      <div class="section-head">
+        <div class="section-head-title">
+          <span>📖</span>
+          <span>03. 수업 교재 보기 (1~8차시)</span>
+        </div>
+        <div class="section-head-desc">
+          차시를 누르면 해당 수업의 PPT 슬라이드 교재를 화면에서 바로 넘겨보거나 내려받을 수 있습니다.
+        </div>
       </div>
 
-      <div class="curriculum-grid">
+      <div class="curriculum-wrap">
         <!-- 1일차 -->
-        <div class="day-column">
-          <div class="day-header">
-            <div>
-              <span class="badge badge-primary" style="margin-bottom: 4px;">1일차 (4차시)</span>
-              <div class="day-title">🌱 11월 23일 (월): 탐색기</div>
+        <div class="day-box">
+          <div class="day-box-head">
+            <div class="day-box-title">
+              <span>🌱 1일차 수업</span>
+              <span style="font-size: 13px; font-weight: 700; color: var(--primary);">11월 23일 (월)</span>
             </div>
-            <button type="button" onclick="openSurveyModal()" class="btn btn-outline" style="font-size: 12px; padding: 5px 10px; color: #059669; border-color: #86efac; font-weight: 800;">
-              📋 사전 설문
-            </button>
+            <span class="badge badge-primary">1~4차시</span>
           </div>
 
-          <div class="step-list">
-            <div class="step-item" onclick="openCurriculumModal(1)" title="클릭하여 1차시 수업 교안(19p) 바로보기">
-              <div class="step-item-head">
-                <span class="step-num-title">1차시: 우리 학교 식물의 돌봄 문제 찾기</span>
-                <span class="step-pdf-btn">📖 1차시 (19p) ↗</span>
-              </div>
-              <p class="step-desc">식물 돌봄 문제 발견, 관찰과 추측 구분하기, 데이터 기반 문제 해결의 필요성 탐색</p>
+          <div class="lesson-item" onclick="openCurriculumModal(1)">
+            <div class="lesson-left">
+              <div class="lesson-title-text">1차시: 식물에게 무슨 일이 생겼을까?</div>
+              <div class="lesson-sub-text">식물의 돌봄 문제 발견하기 • 관찰과 추측 구분하기</div>
             </div>
+            <span class="lesson-view-tag">교재 보기 19p ↗</span>
+          </div>
 
-            <div class="step-item" onclick="openCurriculumModal(2)" title="클릭하여 2차시 수업 교안(41p) 바로보기">
-              <div class="step-item-head">
-                <span class="step-num-title">2차시: 센서로 문제의 원인 분석</span>
-                <span class="step-pdf-btn">📖 2차시 (41p) ↗</span>
-              </div>
-              <p class="step-desc">빛 센서와 토양 수분 센서 원리 학습, 마이크로비트 센서 측정값 실측 및 데이터 시각화</p>
+          <div class="lesson-item" onclick="openCurriculumModal(2)">
+            <div class="lesson-left">
+              <div class="lesson-title-text">2차시: 센서로 식물의 마음 읽기</div>
+              <div class="lesson-sub-text">빛 센서와 토양 수분 센서로 환경 데이터 측정하기</div>
             </div>
+            <span class="lesson-view-tag">교재 보기 41p ↗</span>
+          </div>
 
-            <div class="step-item" onclick="openCurriculumModal(3)" title="클릭하여 3차시 수업 교안(29p) 바로보기">
-              <div class="step-item-head">
-                <span class="step-num-title">3차시: 데이터로 식물 상태 알림 만들기</span>
-                <span class="step-pdf-btn">📖 3차시 (29p) ↗</span>
-              </div>
-              <p class="step-desc">조건문 블록 코딩 기초, 수분 부족 시 LED 경고등 점등 및 알림음 시스템 구현</p>
+          <div class="lesson-item" onclick="openCurriculumModal(3)">
+            <div class="lesson-left">
+              <div class="lesson-title-text">3차시: 식물 상태 알리미 만들기</div>
+              <div class="lesson-sub-text">물이 부족할 때 LED 불빛과 소리로 알려주는 코딩</div>
             </div>
+            <span class="lesson-view-tag">교재 보기 29p ↗</span>
+          </div>
 
-            <div class="step-item" onclick="openCurriculumModal(4)" title="클릭하여 4차시 수업 교안(37p) 바로보기">
-              <div class="step-item-head">
-                <span class="step-num-title">4차시: AI 식물 의사의 판단 시험하기</span>
-                <span class="step-pdf-btn">📖 4차시 (37p) ↗</span>
-              </div>
-              <p class="step-desc">구글 티처블머신 이미지 분류 학습, 정상/시든 잎 모델 훈련 및 센서 데이터 교차 검증</p>
+          <div class="lesson-item" onclick="openCurriculumModal(4)">
+            <div class="lesson-left">
+              <div class="lesson-title-text">4차시: AI 식물 의사 만들기</div>
+              <div class="lesson-sub-text">티처블머신으로 아픈 잎을 찾아내는 인공지능 학습</div>
             </div>
+            <span class="lesson-view-tag">교재 보기 37p ↗</span>
           </div>
         </div>
 
         <!-- 2일차 -->
-        <div class="day-column">
-          <div class="day-header">
-            <div>
-              <span class="badge badge-blue" style="margin-bottom: 4px;">2일차 (4차시)</span>
-              <div class="day-title">🌿 11월 26일 (목): 성장 및 완성기</div>
+        <div class="day-box">
+          <div class="day-box-head">
+            <div class="day-box-title">
+              <span>🌿 2일차 수업</span>
+              <span style="font-size: 13px; font-weight: 700; color: var(--blue);">11월 26일 (목)</span>
             </div>
-            <button type="button" onclick="openSurveyModal()" class="btn btn-outline" style="font-size: 12px; padding: 5px 10px; color: #0284c7; border-color: #7dd3fc; font-weight: 800;">
-              🎓 사후 설문
-            </button>
+            <span class="badge badge-blue">5~8차시</span>
           </div>
 
-          <div class="step-list">
-            <div class="step-item" onclick="openCurriculumModal(5)" title="클릭하여 5차시 수업 교안(15p) 바로보기">
-              <div class="step-item-head">
-                <span class="step-num-title">5차시: 스마트팜 키트 조립 및 실습 준비</span>
-                <span class="step-pdf-btn">📖 5차시 (15p) ↗</span>
-              </div>
-              <p class="step-desc">그린하우스 외형 조립, 확장보드 장착, 센서 및 워터펌프 결합, 배선 안전 점검</p>
+          <div class="lesson-item" onclick="openCurriculumModal(5)">
+            <div class="lesson-left">
+              <div class="lesson-title-text">5차시: 스마트팜 키트 조립하기</div>
+              <div class="lesson-sub-text">온실 집 외형 조립 • 모터와 센서 전선 바르게 연결하기</div>
             </div>
+            <span class="lesson-view-tag" style="color:var(--blue); background:var(--blue-light); border-color:var(--blue-border);">교재 보기 15p ↗</span>
+          </div>
 
-            <div class="step-item" onclick="openCurriculumModal(6)" title="클릭하여 6차시 수업 교안(30p) 바로보기">
-              <div class="step-item-head">
-                <span class="step-num-title">6차시: 내가 설계하는 초록 생명 유지 장치</span>
-                <span class="step-pdf-btn">📖 6차시 (30p) ↗</span>
-              </div>
-              <p class="step-desc">토양 수분 기준 자동 급수 펌프 및 조명 제어 규칙 코딩, 식물의사.hex 테스트</p>
+          <div class="lesson-item" onclick="openCurriculumModal(6)">
+            <div class="lesson-left">
+              <div class="lesson-title-text">6차시: 자동 물주기 장치 만들기</div>
+              <div class="lesson-sub-text">토양 수분에 따라 워터펌프가 자동으로 물을 주는 코딩</div>
             </div>
+            <span class="lesson-view-tag" style="color:var(--blue); background:var(--blue-light); border-color:var(--blue-border);">교재 보기 30p ↗</span>
+          </div>
 
-            <div class="step-item" onclick="openCurriculumModal(7)" title="클릭하여 7차시 수업 교안(15p) 바로보기">
-              <div class="step-item-head">
-                <span class="step-num-title">7차시: 인공지능과 아이디어 카드로 기능 만들기</span>
-                <span class="step-pdf-btn">📖 7차시 (15p) ↗</span>
-              </div>
-              <p class="step-desc">AI 비전 카메라 연동 및 6가지 아이디어 카드를 활용한 우리 모둠만의 스마트팜 특화 기능 추가</p>
+          <div class="lesson-item" onclick="openCurriculumModal(7)">
+            <div class="lesson-left">
+              <div class="lesson-title-text">7차시: 나만의 특별한 스마트팜 꾸미기</div>
+              <div class="lesson-sub-text">우리 모둠만의 아이디어 기능 추가 및 작동 시험</div>
             </div>
+            <span class="lesson-view-tag" style="color:var(--blue); background:var(--blue-light); border-color:var(--blue-border);">교재 보기 15p ↗</span>
+          </div>
 
-            <div class="step-item" onclick="openCurriculumModal(8)" title="클릭하여 8차시 수업 교안(8p) 바로보기">
-              <div class="step-item-head">
-                <span class="step-num-title">8차시: 팀 통합하고 스마트팜 발표하기</span>
-                <span class="step-pdf-btn">📖 8차시 (8p) ↗</span>
-              </div>
-              <p class="step-desc">스마트팜 산출물 시연 및 모둠별 발표, 디지털새싹 공식 사후 설문조사 참여 및 수료식</p>
+          <div class="lesson-item" onclick="openCurriculumModal(8)">
+            <div class="lesson-left">
+              <div class="lesson-title-text">8차시: 우리가 만든 스마트팜 발표하기</div>
+              <div class="lesson-sub-text">완성 작품 시연 및 친구들에게 발표 • 만족도 설문조사</div>
             </div>
+            <span class="lesson-view-tag" style="color:var(--blue); background:var(--blue-light); border-color:var(--blue-border);">교재 보기 8p ↗</span>
           </div>
         </div>
       </div>
@@ -1217,61 +1214,58 @@
 
   <!-- 1. 스마트팜 참고 회로도(배선도) 크게 보기 모달 -->
   <div id="circuitModal" class="modal-overlay hidden" onclick="closeCircuitModal()">
-    <div class="modal-content" style="max-width: 960px; width: 95vw; max-height: 92vh; padding: 22px; display: flex; flex-direction: column;" onclick="event.stopPropagation()">
-      <div style="display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 14px; border-bottom: 1.5px solid #e2e8f0; flex-wrap: wrap; gap: 10px;">
+    <div class="modal-content" style="max-width: 900px; width: 95vw; max-height: 90vh; padding: 20px; display: flex; flex-direction: column;" onclick="event.stopPropagation()">
+      <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1.5px solid var(--border-color); flex-wrap: wrap; gap: 8px;">
         <div>
-          <span class="badge badge-blue" style="margin-bottom: 4px;">🌿 하드웨어 조립 가이드</span>
-          <h3 style="font-size: 18px; font-weight: 900; color: #0f172a; margin: 0;">
-            🔌 스마트팜 AIoT 하드웨어 참고 회로도 (배선도)
+          <span class="badge badge-blue">부품 연결 안내</span>
+          <h3 style="font-size: 17px; font-weight: 900; color: var(--text-main); margin-top: 2px;">
+            🔌 스마트팜 부품 전선 연결도 (회로도)
           </h3>
-          <p style="font-size: 12.5px; color: #64748b; margin-top: 2px;">
-            마이크로비트 IoT 확장보드와 센서·액추에이터 핀 결합 가이드
-          </p>
         </div>
         <div style="display: flex; gap: 8px; align-items: center;">
-          <a href="./smartfarm-circuit.png" download="스마트팜_참고_회로도.png" class="btn btn-outline" style="min-height: 36px; padding: 4px 12px; font-size: 12px;">
-            💾 이미지 저장
+          <a href="./smartfarm-circuit.png" download="스마트팜_참고_회로도.png" class="btn btn-outline" style="min-height: 34px; padding: 4px 12px; font-size: 12px;">
+            💾 그림 저장
           </a>
-          <button type="button" onclick="closeCircuitModal()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #94a3b8; line-height: 1; padding: 4px;">
+          <button type="button" onclick="closeCircuitModal()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #94a3b8; line-height: 1; padding: 2px;">
             ✕
           </button>
         </div>
       </div>
 
-      <div style="flex: 1; min-height: 350px; overflow: auto; text-align: center; padding: 16px 0; background: #ffffff;">
-        <img src="./smartfarm-circuit.png" alt="스마트팜 AIoT 상세 회로도" style="max-width: 100%; max-height: 68vh; object-fit: contain; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1.5px solid #e2e8f0;">
+      <div style="flex: 1; min-height: 300px; overflow: auto; text-align: center; padding: 14px 0;">
+        <img src="./smartfarm-circuit.png" alt="스마트팜 전선 연결도" style="max-width: 100%; max-height: 65vh; object-fit: contain; border-radius: 8px; border: 1.5px solid #e2e8f0;">
       </div>
 
-      <div style="padding-top: 12px; border-top: 1.5px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 12px; color: #64748b;">
-        <span>💡 빛 센서(P1), 토양 수분 센서(P2), 릴레이 모듈(P8), 레인보우 LED(P16)</span>
-        <button type="button" onclick="closeCircuitModal()" class="btn btn-outline" style="min-height: 34px; padding: 4px 16px; font-size: 12px;">닫기</button>
+      <div style="padding-top: 10px; border-top: 1.5px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text-muted);">
+        <span>💡 빛 센서(P1), 토양 수분 센서(P2), 워터펌프(P8), 레인보우 LED(P16) 핀에 꽂아주세요.</span>
+        <button type="button" onclick="closeCircuitModal()" class="btn btn-outline" style="min-height: 32px; padding: 4px 14px; font-size: 12px;">닫기</button>
       </div>
     </div>
   </div>
 
-  <!-- 2. 차시별 분리 교안 PDF 뷰어 모달 -->
+  <!-- 2. 차시별 교재 슬라이드 PDF 뷰어 모달 -->
   <div id="curriculumModal" class="modal-overlay hidden" onclick="closeCurriculumModal()">
-    <div class="modal-content" style="max-width: 1100px; width: 95vw; height: 90vh; padding: 20px; display: flex; flex-direction: column;" onclick="event.stopPropagation()">
-      <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1.5px solid #e2e8f0; flex-wrap: wrap; gap: 8px;">
+    <div class="modal-content" style="max-width: 1050px; width: 95vw; height: 88vh; padding: 18px; display: flex; flex-direction: column;" onclick="event.stopPropagation()">
+      <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1.5px solid var(--border-color); flex-wrap: wrap; gap: 8px;">
         <div>
           <span id="cmLessonBadge" class="badge badge-primary">1차시</span>
-          <h3 id="cmLessonTitle" style="font-size: 17px; font-weight: 900; color: #0f172a; margin: 2px 0 0 0;">우리 학교 식물의 돌봄 문제 찾기</h3>
+          <h3 id="cmLessonTitle" style="font-size: 16.5px; font-weight: 900; color: var(--text-main); margin-top: 2px;">우리 학교 식물의 돌봄 문제 찾기</h3>
         </div>
-        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-          <a id="cmExternalBtn" href="./curriculum_lessons/lesson_1.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="min-height: 36px; padding: 6px 14px; font-size: 12px; color: #0284c7; border-color: #38bdf8; font-weight: 700; text-decoration: none;">
-            ↗ 새 창에서 크게 보기
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <a id="cmExternalBtn" href="./curriculum_lessons/lesson_1.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="min-height: 34px; padding: 4px 12px; font-size: 12px; color: var(--blue); border-color: #7dd3fc;">
+            ↗ 크게 보기
           </a>
-          <a id="cmDownloadBtn" href="./curriculum_lessons/lesson_1.pdf" download="지세포중_1차시_교안.pdf" class="btn btn-primary" style="min-height: 36px; padding: 6px 14px; font-size: 12px; background: #15803d; font-weight: 700;">
-            💾 1차시 PDF (2.1MB)
+          <a id="cmDownloadBtn" href="./curriculum_lessons/lesson_1.pdf" download="지세포중_1차시_교재.pdf" class="btn btn-primary" style="min-height: 34px; padding: 4px 12px; font-size: 12px;">
+            💾 교재 다운로드
           </a>
-          <button type="button" onclick="closeCurriculumModal()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #94a3b8; line-height: 1; padding: 4px;">
+          <button type="button" onclick="closeCurriculumModal()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #94a3b8; line-height: 1;">
             ✕
           </button>
         </div>
       </div>
 
-      <div style="display: flex; gap: 6px; padding: 10px 0; overflow-x: auto; white-space: nowrap; border-bottom: 1px solid #f1f5f9; align-items: center;">
-        <span style="font-size: 12px; font-weight: 800; color: #475569; margin-right: 4px; flex-shrink: 0;">차시 바로가기:</span>
+      <div style="display: flex; gap: 5px; padding: 8px 0; overflow-x: auto; white-space: nowrap; border-bottom: 1px solid #f1f5f9; align-items: center;">
+        <span style="font-size: 11.5px; font-weight: 800; color: var(--text-muted); margin-right: 4px;">차시 선택:</span>
         <button type="button" class="cm-tab-btn active" id="cmTab1" onclick="switchCurriculumLesson(1)">1차시 (19p)</button>
         <button type="button" class="cm-tab-btn" id="cmTab2" onclick="switchCurriculumLesson(2)">2차시 (41p)</button>
         <button type="button" class="cm-tab-btn" id="cmTab3" onclick="switchCurriculumLesson(3)">3차시 (29p)</button>
@@ -1282,85 +1276,79 @@
         <button type="button" class="cm-tab-btn" id="cmTab8" onclick="switchCurriculumLesson(8)">8차시 (8p)</button>
       </div>
 
-      <div style="flex: 1; width: 100%; min-height: 350px; background: #525659; border-radius: 8px; overflow: hidden; position: relative; margin-top: 10px;">
+      <div style="flex: 1; width: 100%; min-height: 300px; background: #525659; border-radius: 8px; overflow: hidden; margin-top: 8px;">
         <iframe id="curriculumPdfFrame" src="./curriculum_lessons/lesson_1.pdf#toolbar=1&navpanes=0" style="width: 100%; height: 100%; border: none; display: block;" allow="fullscreen"></iframe>
       </div>
 
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 12px; color: #64748b; flex-wrap: wrap; gap: 6px;">
-        <span>💡 마우스 휠이나 방향키로 슬라이드를 넘길 수 있으며, [새 창에서 크게 보기 ↗]로 전체화면 열람이 가능합니다.</span>
-        <button type="button" onclick="closeCurriculumModal()" class="btn btn-outline" style="min-height: 32px; padding: 4px 14px; font-size: 12px;">닫기</button>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px; font-size: 11.5px; color: var(--text-muted);">
+        <span>💡 마우스 휠이나 방향키로 슬라이드를 넘길 수 있습니다.</span>
+        <button type="button" onclick="closeCurriculumModal()" class="btn btn-outline" style="min-height: 30px; padding: 2px 12px; font-size: 11.5px;">닫기</button>
       </div>
     </div>
   </div>
 
-  <!-- 3. 포털 접속 QR 모달 -->
+  <!-- 3. 스마트폰 접속 QR 모달 -->
   <div id="siteQrModal" class="modal-overlay hidden" onclick="closeSiteQrModal()">
-    <div class="modal-content" style="max-width: 440px; text-align: center; padding: 24px;" onclick="event.stopPropagation()">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; text-align: left;">
+    <div class="modal-content" style="max-width: 400px; text-align: center; padding: 22px;" onclick="event.stopPropagation()">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; text-align: left;">
         <div>
-          <span class="badge badge-blue" style="font-weight: 800; margin-bottom: 4px;">학생 접속용 QR</span>
-          <h3 style="font-size: 18px; font-weight: 900; color: #0f172a; margin: 0;">🌐 지세포중 포털 접속</h3>
+          <span class="badge badge-blue">학생 접속용</span>
+          <h3 style="font-size: 17px; font-weight: 900; color: var(--text-main); margin-top: 2px;">스마트폰으로 접속하기</h3>
         </div>
-        <button onclick="closeSiteQrModal()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #94a3b8; line-height: 1;">✕</button>
+        <button onclick="closeSiteQrModal()" style="background: none; border: none; font-size: 22px; cursor: pointer; color: #94a3b8;">✕</button>
       </div>
-      <p style="font-size: 13px; color: #475569; margin-bottom: 16px; text-align: left; line-height: 1.5;">
-        스마트폰이나 태블릿 카메라로 본 수업 포털에 접속할 수 있는 QR 코드입니다.
+      <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 14px; text-align: left;">
+        스마트폰 기본 카메라로 비추면 이 수업 웹사이트가 바로 열립니다.
       </p>
-      <div style="background-color: #ffffff; border: 2px solid #bae6fd; border-radius: var(--radius-lg); padding: 18px; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
-        <img id="siteQrImg" src="./portal-qr.png" alt="포털 접속 QR" style="width: 200px; height: 200px; display: block; border-radius: 6px;">
+      <div style="background: #ffffff; border: 2px solid var(--blue-border); border-radius: var(--radius-md); padding: 14px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 14px;">
+        <img id="siteQrImg" src="./portal-qr.png" alt="포털 접속 QR" style="width: 180px; height: 180px; display: block;">
       </div>
-      <div style="display: flex; gap: 8px; justify-content: flex-end;">
-        <button onclick="copyCurrentSiteUrl()" class="btn btn-primary" style="flex: 1; background: #0284c7; font-size: 13px;">🔗 주소 복사</button>
-        <button onclick="closeSiteQrModal()" class="btn btn-outline" style="flex: 1; font-size: 13px;">닫기</button>
+      <div style="display: flex; gap: 8px;">
+        <button onclick="copyCurrentSiteUrl()" class="btn btn-primary" style="flex: 1; background: var(--blue);">주소 복사</button>
+        <button onclick="closeSiteQrModal()" class="btn btn-outline" style="flex: 1;">닫기</button>
       </div>
     </div>
   </div>
 
   <!-- 4. 이미지 뷰어 모달 -->
   <div id="imgModal" class="modal-overlay hidden" onclick="closeImageModal()">
-    <div class="modal-content" style="max-width: 600px; padding: 20px;" onclick="event.stopPropagation()">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-        <h3 style="font-size: 16px; font-weight: 800; color: var(--text-main);">🖼️ 식물 데이터 출력용 이미지</h3>
-        <button onclick="closeImageModal()" style="background: none; border: none; font-size: 22px; cursor: pointer; color: #94a3b8;">✕</button>
+    <div class="modal-content" style="max-width: 550px; padding: 18px;" onclick="event.stopPropagation()">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+        <h3 style="font-size: 15px; font-weight: 800; color: var(--text-main);">🖼️ 식물 잎 그림 크게보기</h3>
+        <button onclick="closeImageModal()" style="background: none; border: none; font-size: 20px; cursor: pointer; color: #94a3b8;">✕</button>
       </div>
-      <img id="targetImg" src="" alt="이미지 미리보기" style="max-width: 100%; max-height: 60vh; border-radius: 8px; display: block; margin: 0 auto; box-shadow: var(--shadow-sm); border: 1.5px solid #e2e8f0;">
-      <div style="display: flex; justify-content: flex-end; margin-top: 14px;">
+      <img id="targetImg" src="" alt="식물 그림" style="max-width: 100%; max-height: 55vh; border-radius: 8px; display: block; margin: 0 auto; border: 1.5px solid #e2e8f0;">
+      <div style="display: flex; justify-content: flex-end; margin-top: 12px;">
         <button onclick="closeImageModal()" class="btn btn-outline">닫기</button>
       </div>
     </div>
   </div>
 
-  <!-- 5. 만족도 조사 & 학생코드 복사 모달 (드롭다운 & 우측 코드 복사) -->
+  <!-- 5. 만족도 조사 모달 (헤더 버튼 클릭 시 팝업) -->
   <div id="surveyModal" class="modal-overlay hidden" onclick="closeSurveyModal()">
-    <div class="modal-content" style="max-width: 580px; text-align: left; padding: 24px;" onclick="event.stopPropagation()">
-      
-      <!-- 모달 헤더 -->
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 14px;">
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <span style="font-size: 26px;">📋</span>
+    <div class="modal-content" style="max-width: 540px; text-align: left; padding: 22px;" onclick="event.stopPropagation()">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1.5px solid var(--border-color); padding-bottom: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 22px;">📋</span>
           <div>
-            <h3 style="font-size: 18px; font-weight: 900; color: #0f172a; margin: 0;">
+            <h3 style="font-size: 17px; font-weight: 900; color: var(--text-main); margin: 0;">
               디지털새싹 만족도 조사 참여
             </h3>
-            <span style="font-size: 12px; color: #64748b;">
+            <span style="font-size: 11.5px; color: var(--text-muted);">
               지세포중학교 3학년 2반
             </span>
           </div>
         </div>
-        <button type="button" onclick="closeSurveyModal()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #94a3b8; line-height: 1; padding: 4px;">
-          ✕
-        </button>
+        <button type="button" onclick="closeSurveyModal()" style="background: none; border: none; font-size: 22px; cursor: pointer; color: #94a3b8;">✕</button>
       </div>
 
-      <!-- 본인 이름 드롭다운 및 우측 참여코드 복사 바 -->
-      <div style="background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 14px; padding: 18px; margin-bottom: 20px;">
-        <label style="display: block; font-size: 13px; font-weight: 800; color: #334155; margin-bottom: 8px;">
-          👤 본인 이름 선택 (선택 시 우측에 참여코드가 표시되고 자동 복사됩니다):
+      <div style="background: #f8fafc; border: 1.5px solid var(--border-color); border-radius: var(--radius-md); padding: 16px; margin-bottom: 16px;">
+        <label style="display: block; font-size: 12.5px; font-weight: 800; color: var(--text-main); margin-bottom: 8px;">
+          👤 본인 이름 선택 (선택 시 참여코드가 자동 복사됩니다):
         </label>
         
-        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-          <!-- 1. 드롭다운 (좌측) -->
-          <select id="modalStudentSelect" onchange="handleStudentSelect(this.value)" style="flex: 1; min-width: 200px; height: 46px; border-radius: 10px; border: 2px solid #10b981; padding: 0 14px; font-size: 14px; font-weight: 800; color: #0f172a; background: #ffffff; cursor: pointer; outline: none; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
+        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+          <select id="modalStudentSelect" onchange="handleStudentSelect(this.value)" class="survey-select" style="min-width: 180px;">
             <option value="">👉 본인 이름을 선택하세요 (수강생 18명)</option>
             <option value="DGC12P">1. 경*림</option>
             <option value="L9DZRG">2. 김*주</option>
@@ -1382,46 +1370,38 @@
             <option value="14YI48">18. 황*근</option>
           </select>
 
-          <!-- 2. 우측 설문조사 참여코드 표시 및 복사 버튼 -->
-          <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
-            <div id="modalCodeDisplay" style="height: 46px; padding: 0 16px; border-radius: 10px; background: #f1f5f9; border: 2px solid #cbd5e1; font-family: monospace; font-size: 18px; font-weight: 900; letter-spacing: 1.5px; color: #94a3b8; display: flex; align-items: center; justify-content: center; min-width: 110px;">
-              ------
-            </div>
-            <button type="button" id="modalCopyBtn" onclick="copySelectedStudentCode()" class="btn btn-primary" style="height: 46px; min-height: 46px; padding: 0 16px; background: #94a3b8; font-weight: 800; font-size: 13px; border-radius: 10px; border: none; display: flex; align-items: center; gap: 5px; white-space: nowrap; cursor: not-allowed;" disabled>
+          <div style="display: flex; gap: 6px; align-items: center;">
+            <div id="modalCodeDisplay" class="survey-code-pill" style="min-width: 90px; height: 44px; font-size: 16px;">------</div>
+            <button type="button" id="modalCopyBtn" onclick="copySelectedStudentCode()" class="survey-btn-copy" disabled>
               📋 복사
             </button>
           </div>
         </div>
 
-        <!-- 안내 문구 -->
-        <div id="modalCopyNotice" style="display: none; margin-top: 10px; font-size: 12px; color: #15803d; font-weight: 700; align-items: center; gap: 6px;">
-          <span>✅ 참여코드가 클립보드에 복사되었습니다! 아래 설문조사 바로가기 버튼을 누르고 설문지 첫 번째 칸에 붙여넣기(Ctrl+V) 해주세요.</span>
+        <div id="modalCopyNotice" style="display: none; margin-top: 8px; font-size: 12px; color: var(--primary); font-weight: 700;">
+          ✅ 참여코드가 복사되었습니다! 아래 버튼을 누르고 설문지 첫 번째 칸에 붙여넣기(Ctrl+V) 하세요.
         </div>
       </div>
 
-      <!-- 설문조사 바로가기 버튼 (newsac.kosac.re.kr) -->
-      <div style="display: flex; gap: 10px; justify-content: flex-end; align-items: center;">
-        <button type="button" onclick="closeSurveyModal()" class="btn btn-outline" style="min-height: 46px; padding: 8px 18px;">
-          닫기
-        </button>
-        <a href="https://newsac.kosac.re.kr/public/survey" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex: 1; justify-content: center; background: #15803d; font-size: 15px; font-weight: 900; min-height: 46px; padding: 10px 20px; box-shadow: 0 4px 14px rgba(21, 128, 61, 0.35); text-decoration: none; border-radius: 10px;">
-          🚀 설문조사 바로가기 (newsac.kosac.re.kr) ↗
+      <div style="display: flex; gap: 8px; justify-content: flex-end;">
+        <button type="button" onclick="closeSurveyModal()" class="btn btn-outline" style="min-height: 42px;">닫기</button>
+        <a href="https://newsac.kosac.re.kr/public/survey" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex: 1; font-size: 13.5px; min-height: 42px;">
+          🚀 설문조사 바로가기 ↗
         </a>
       </div>
-
     </div>
   </div>
 
   <!-- 토스트 알림창 -->
   <div id="toastBox" class="toast">
-    <span style="color: #4ade80; font-weight: 900;">•</span>
-    <span id="toastMessage">안내 메시지</span>
+    <span style="color: #4ade80;">•</span>
+    <span id="toastMessage">알림</span>
   </div>
 
   <!-- 푸터 -->
   <footer>
     <div class="container">
-      <div style="font-weight: 800; color: #0f172a; margin-bottom: 4px; font-size: 13px;">
+      <div style="font-weight: 800; color: var(--text-main); margin-bottom: 2px;">
         부산교육대학교 산학협력단 | 2026 디지털새싹 교육 프로그램
       </div>
       <div>
@@ -1431,14 +1411,9 @@
   </footer>
 
   <!-- ==========================================
-       자바스크립트 비즈니스 로직
+       자바스크립트 로직
        ========================================== -->
   <script>
-    // 1. 공통 설정
-    const SCHOOL_NAME = "지세포중학교";
-    const CLASS_NAME = "3-2";
-    const SURVEY_URL = "https://newsac.kosac.re.kr/public/survey";
-
     // 지세포중 3-2 학생 명단 (총 18명 및 설문참여코드)
     const JISPEO_STUDENT_LIST = [
       { num: 1, name: "경*림", code: "DGC12P" },
@@ -1464,74 +1439,16 @@
     let currentSelectedStudentCode = "";
     let currentSelectedStudentName = "";
 
-    // ==========================================
-    // 차시별 분리 교안 PDF 뷰어 모달
-    // ==========================================
+    // 차시별 분리 교안 데이터 (1~8차시)
     const CURRICULUM_DATA = {
-      1: {
-        num: 1,
-        title: "1차시: 우리 학교 식물의 돌봄 문제 찾기",
-        sub: "분리 교안: 총 19장 • 식물 돌봄 문제 발견 & 관찰과 추측 구분",
-        pageCount: 19,
-        fileSize: "2.1MB",
-        pdfUrl: "./curriculum_lessons/lesson_1.pdf"
-      },
-      2: {
-        num: 2,
-        title: "2차시: 센서로 문제의 원인 분석",
-        sub: "분리 교안: 총 41장 • 빛 센서 • 토양 수분 센서 데이터 측정",
-        pageCount: 41,
-        fileSize: "4.6MB",
-        pdfUrl: "./curriculum_lessons/lesson_2.pdf"
-      },
-      3: {
-        num: 3,
-        title: "3차시: 데이터로 식물 상태 알림 만들기",
-        sub: "분리 교안: 총 29장 • 메이크코드 조건문 블록 코딩 & 레인보우 LED",
-        pageCount: 29,
-        fileSize: "3.0MB",
-        pdfUrl: "./curriculum_lessons/lesson_3.pdf"
-      },
-      4: {
-        num: 4,
-        title: "4차시: AI 식물 의사의 판단 시험하기",
-        sub: "분리 교안: 총 37장 • 티처블머신 이미지 분류 학습 & 센서 교차 검증",
-        pageCount: 37,
-        fileSize: "4.5MB",
-        pdfUrl: "./curriculum_lessons/lesson_4.pdf"
-      },
-      5: {
-        num: 5,
-        title: "5차시: 스마트팜 키트 조립 및 실습 준비",
-        sub: "분리 교안: 총 15장 • 그린하우스 하드웨어 결합 & IoT 확장보드 배선",
-        pageCount: 15,
-        fileSize: "1.7MB",
-        pdfUrl: "./curriculum_lessons/lesson_5.pdf"
-      },
-      6: {
-        num: 6,
-        title: "6차시: 내가 설계하는 초록 생명 유지 장치",
-        sub: "분리 교안: 총 30장 • 자동 급수 펌프 규칙 & 식물의사.hex 테스트",
-        pageCount: 30,
-        fileSize: "3.5MB",
-        pdfUrl: "./curriculum_lessons/lesson_6.pdf"
-      },
-      7: {
-        num: 7,
-        title: "7차시: 인공지능과 아이디어 카드로 기능 만들기",
-        sub: "분리 교안: 총 15장 • AI 카메라 연동 & 6가지 아이디어 카드 스마트팜",
-        pageCount: 15,
-        fileSize: "2.2MB",
-        pdfUrl: "./curriculum_lessons/lesson_7.pdf"
-      },
-      8: {
-        num: 8,
-        title: "8차시: 팀 통합하고 스마트팜 발표하기",
-        sub: "분리 교안: 총 8장 • 최종 시연 및 발표, 사후 설문조사 & 수료식",
-        pageCount: 8,
-        fileSize: "876KB",
-        pdfUrl: "./curriculum_lessons/lesson_8.pdf"
-      }
+      1: { num: 1, title: "1차시: 식물에게 무슨 일이 생겼을까?", pageCount: 19, fileSize: "2.1MB", pdfUrl: "./curriculum_lessons/lesson_1.pdf" },
+      2: { num: 2, title: "2차시: 센서로 식물의 마음 읽기", pageCount: 41, fileSize: "4.6MB", pdfUrl: "./curriculum_lessons/lesson_2.pdf" },
+      3: { num: 3, title: "3차시: 식물 상태 알리미 만들기", pageCount: 29, fileSize: "3.0MB", pdfUrl: "./curriculum_lessons/lesson_3.pdf" },
+      4: { num: 4, title: "4차시: AI 식물 의사 만들기", pageCount: 37, fileSize: "4.5MB", pdfUrl: "./curriculum_lessons/lesson_4.pdf" },
+      5: { num: 5, title: "5차시: 스마트팜 키트 조립하기", pageCount: 15, fileSize: "1.7MB", pdfUrl: "./curriculum_lessons/lesson_5.pdf" },
+      6: { num: 6, title: "6차시: 자동 물주기 장치 만들기", pageCount: 30, fileSize: "3.5MB", pdfUrl: "./curriculum_lessons/lesson_6.pdf" },
+      7: { num: 7, title: "7차시: 나만의 특별한 스마트팜 꾸미기", pageCount: 15, fileSize: "2.2MB", pdfUrl: "./curriculum_lessons/lesson_7.pdf" },
+      8: { num: 8, title: "8차시: 우리가 만든 스마트팜 발표하기", pageCount: 8, fileSize: "876KB", pdfUrl: "./curriculum_lessons/lesson_8.pdf" }
     };
 
     function openCurriculumModal(lessonNum = 1) {
@@ -1560,7 +1477,7 @@
       if (extBtn) extBtn.href = data.pdfUrl;
       if (dlBtn) {
         dlBtn.href = data.pdfUrl;
-        dlBtn.textContent = `💾 ${data.num}차시 PDF (${data.fileSize})`;
+        dlBtn.textContent = `💾 ${data.num}차시 교재 (${data.fileSize})`;
       }
       if (iframe) iframe.src = `${data.pdfUrl}#toolbar=1&navpanes=0`;
 
@@ -1573,43 +1490,32 @@
       }
     }
 
-    // ==========================================
     // 회로도 모달
-    // ==========================================
     function openCircuitModal() {
       document.getElementById("circuitModal").classList.remove("hidden");
     }
-
     function closeCircuitModal() {
       document.getElementById("circuitModal").classList.add("hidden");
     }
 
-    // ==========================================
     // 포털 접속 QR 모달
-    // ==========================================
     function openSiteQrModal() {
       document.getElementById("siteQrModal").classList.remove("hidden");
     }
-
     function closeSiteQrModal() {
       document.getElementById("siteQrModal").classList.add("hidden");
     }
 
-    // ==========================================
     // 이미지 뷰어 모달
-    // ==========================================
     function openImageModal(imgSrc) {
       document.getElementById("targetImg").src = imgSrc;
       document.getElementById("imgModal").classList.remove("hidden");
     }
-
     function closeImageModal() {
       document.getElementById("imgModal").classList.add("hidden");
     }
 
-    // ==========================================
     // 학생 설문조사 및 참여코드 복사 로직
-    // ==========================================
     function openSurveyModal() {
       const modal = document.getElementById("surveyModal");
       if (modal) {
@@ -1640,28 +1546,44 @@
     }
 
     function updateCodeUI(code, name) {
-      const modalSel = document.getElementById("modalStudentSelect");
-      if (modalSel) modalSel.value = code;
+      ['modalStudentSelect', 'sectionStudentSelect'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = code;
+      });
 
+      // 모달 UI 업데이트
       const modalDisp = document.getElementById("modalCodeDisplay");
       const modalCopyBtn = document.getElementById("modalCopyBtn");
       const modalNotice = document.getElementById("modalCopyNotice");
-
       if (modalDisp) {
         modalDisp.textContent = code ? code : "------";
-        modalDisp.style.background = code ? "#ecfdf5" : "#f1f5f9";
-        modalDisp.style.color = code ? "#059669" : "#94a3b8";
-        modalDisp.style.borderColor = code ? "#10b981" : "#cbd5e1";
+        modalDisp.style.background = code ? "#ecfdf5" : "#ffffff";
+        modalDisp.style.color = code ? "#15803d" : "#94a3b8";
+        modalDisp.style.borderColor = code ? "#86efac" : "#cbd5e1";
       }
       if (modalCopyBtn) {
         modalCopyBtn.disabled = !code;
-        modalCopyBtn.style.background = code ? "#059669" : "#94a3b8";
+        modalCopyBtn.style.background = code ? "#15803d" : "#94a3b8";
         modalCopyBtn.style.cursor = code ? "pointer" : "not-allowed";
-        modalCopyBtn.style.boxShadow = code ? "0 2px 8px rgba(5, 150, 105, 0.3)" : "none";
       }
-      if (modalNotice) {
-        modalNotice.style.display = code ? "flex" : "none";
+      if (modalNotice) modalNotice.style.display = code ? "block" : "none";
+
+      // 본문 UI 업데이트
+      const secDisp = document.getElementById("secCodeDisplay");
+      const secCopyBtn = document.getElementById("secCopyBtn");
+      const secNotice = document.getElementById("secCopyNotice");
+      if (secDisp) {
+        secDisp.textContent = code ? code : "------";
+        secDisp.style.background = code ? "#ecfdf5" : "#ffffff";
+        secDisp.style.color = code ? "#15803d" : "#94a3b8";
+        secDisp.style.borderColor = code ? "#86efac" : "#cbd5e1";
       }
+      if (secCopyBtn) {
+        secCopyBtn.disabled = !code;
+        secCopyBtn.style.background = code ? "#15803d" : "#94a3b8";
+        secCopyBtn.style.cursor = code ? "pointer" : "not-allowed";
+      }
+      if (secNotice) secNotice.style.display = code ? "block" : "none";
     }
 
     function syncStudentSelectUI() {
@@ -1676,9 +1598,7 @@
       }
     }
 
-    // ==========================================
-    // 유틸리티
-    // ==========================================
+    // 클립보드 복사 유틸
     function copyTextToClipboard(text, msg = "복사되었습니다!") {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(() => showToast(msg)).catch(() => fallbackCopy(text, msg));
@@ -1709,11 +1629,11 @@
       if (box && msgEl) {
         msgEl.textContent = msg;
         box.classList.add("show");
-        setTimeout(() => box.classList.remove("show"), 2500);
+        setTimeout(() => box.classList.remove("show"), 2200);
       }
     }
 
-    // ESC 키 리스너
+    // ESC 키로 모달 닫기
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         closeCurriculumModal();
@@ -1724,7 +1644,6 @@
       }
     });
 
-    // 페이지 로드 시 초기화
     window.addEventListener("DOMContentLoaded", () => {
       syncStudentSelectUI();
     });
