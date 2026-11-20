@@ -313,6 +313,34 @@
       filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.12));
     }
 
+    .hero-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .hero-feature-item {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border-color);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .hero-feature-title {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+      margin-bottom: 3px;
+    }
+
+    .hero-feature-desc {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
     /* 3. 만족도 조사 카드 (중요 인터랙션 카드) */
     .survey-card {
       margin-top: 20px;
@@ -762,6 +790,9 @@
         width: 110px;
         height: 110px;
       }
+      .hero-feature-grid {
+        grid-template-columns: 1fr;
+      }
       .quick-nav {
         grid-template-columns: 1fr;
       }
@@ -821,8 +852,24 @@
           데이터로 초록을 구하는 아이(AIoT) 수호대
         </h1>
         <p class="hero-desc">
-          센서로 식물의 상태를 측정하고, 인공지능(AI)과 마이크로비트로 식물을 돌보는 스마트팜을 직접 만들어보는 소프트웨어 실습 수업입니다.
+          우리가 살아가는 교실과 주변 환경의 문제를 발견하고, <strong>빛과 토양 수분 센서 데이터</strong>로 식물의 건강 상태를 실시간 탐색합니다. 나아가 <strong>인공지능(AI) 비전 머신러닝과 마이크로비트 사물인터넷(IoT)</strong> 기술을 결합하여, 아픈 잎을 스스로 진단하고 필요한 순간에 자동으로 물과 조명을 공급하는 <strong>지능형 스마트팜 온실을 직접 설계·조립·코딩</strong>해보는 8차시 창의 융합 소프트웨어 실습 프로그램입니다.
         </p>
+
+        <!-- 3대 핵심 학습 역량 카드 -->
+        <div class="hero-feature-grid">
+          <div class="hero-feature-item" style="border-color: #bbf7d0;">
+            <div class="hero-feature-title" style="color: var(--primary);">01. 센서 데이터 탐색</div>
+            <div class="hero-feature-desc">빛·토양 수분 실시간 측정 및 데이터 기반 원인 분석</div>
+          </div>
+          <div class="hero-feature-item" style="border-color: #bae6fd;">
+            <div class="hero-feature-title" style="color: #0284c7;">02. 인공지능(AI) 머신러닝</div>
+            <div class="hero-feature-desc">티처블머신 잎 사진 학습으로 건강 상태 자동 판별</div>
+          </div>
+          <div class="hero-feature-item" style="border-color: #fed7aa;">
+            <div class="hero-feature-title" style="color: #c2410c;">03. 지능형 자동 제어(AIoT)</div>
+            <div class="hero-feature-desc">워터펌프 자동 급수 &amp; 레인보우 생장 조명 제어</div>
+          </div>
+        </div>
       </div>
       <img src="./smartfarm-character.png" alt="스마트팜 마스코트" class="hero-mascot">
     </div>
