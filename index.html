@@ -203,6 +203,57 @@
       transform: translateY(-1.5px);
     }
 
+    /* 수업 활용 사이트 카드별 일관된 아웃라인 버튼 및 호버 효과 */
+    .site-card-btn {
+      width: 100%;
+      background: #ffffff;
+      font-weight: 800;
+      font-size: 13.5px;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+    }
+
+    .site-card-btn-1 {
+      border: 1.5px solid #86efac;
+      color: #15803d;
+    }
+    .site-card-btn-1:hover {
+      background: #f0fdf4;
+      border-color: #15803d;
+      color: #166534;
+      transform: translateY(-1.5px);
+      box-shadow: 0 2px 8px rgba(22, 163, 74, 0.15);
+    }
+
+    .site-card-btn-2 {
+      border: 1.5px solid #7dd3fc;
+      color: #0284c7;
+    }
+    .site-card-btn-2:hover {
+      background: #f0f9ff;
+      border-color: #0284c7;
+      color: #0369a1;
+      transform: translateY(-1.5px);
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.15);
+    }
+
+    .site-card-btn-3 {
+      border: 1.5px solid #a5f3fc;
+      color: #0891b2;
+    }
+    .site-card-btn-3:hover {
+      background: #ecfeff;
+      border-color: #0891b2;
+      color: #0e7490;
+      transform: translateY(-1.5px);
+      box-shadow: 0 2px 8px rgba(8, 145, 178, 0.15);
+    }
+
     /* 상단 헤더 설문조사 버튼 */
     #headerSurveyBtn {
       background: #ffffff;
@@ -954,7 +1005,7 @@
               마이크로비트를 블록으로 코딩하는 사이트입니다. 센서값을 측정하고 펌프와 조명을 작동시키는 규칙을 만듭니다.
             </p>
           </div>
-          <a href="https://makecode.microbit.org/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">
+          <a href="https://makecode.microbit.org/" target="_blank" rel="noopener noreferrer" class="site-card-btn site-card-btn-1">
             바로가기 ↗
           </a>
         </div>
@@ -973,7 +1024,7 @@
               식물 잎 사진을 컴퓨터에게 공부시키는 사이트입니다. 건강한 잎과 시든 잎을 스스로 구별하는 AI 모델을 만듭니다.
             </p>
           </div>
-          <a href="https://teachablemachine.withgoogle.com/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="width: 100%; border-color: #7dd3fc; color: #0284c7; font-weight: 800;">
+          <a href="https://teachablemachine.withgoogle.com/" target="_blank" rel="noopener noreferrer" class="site-card-btn site-card-btn-2">
             바로가기 ↗
           </a>
         </div>
@@ -995,7 +1046,7 @@
               If-Else 조건문과 환경 데이터를 연결하여 AI 식물의사의 판단 규칙을 설계하는 실습 사이트입니다.
             </p>
           </div>
-          <a href="https://ifelse-delta.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="width: 100%; border-color: #a5f3fc; color: #0891b2; font-weight: 800;">
+          <a href="https://ifelse-delta.vercel.app/" target="_blank" rel="noopener noreferrer" class="site-card-btn site-card-btn-3">
             바로가기 ↗
           </a>
         </div>
