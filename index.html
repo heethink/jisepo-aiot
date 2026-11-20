@@ -879,7 +879,7 @@
             <span class="badge badge-primary">필수 설문</span>
           </div>
           <div class="survey-card-desc">
-            이름을 선택하면 참여코드가 자동 복사됩니다. 복사 후 <strong>[설문조사 바로가기]</strong>를 눌러 첫 칸에 붙여넣기(Ctrl+V) 해주세요.
+            이름을 선택하면 참여코드가 자동 복사됩니다. <strong>[설문조사 바로가기]</strong>를 눌러 첫 칸에 붙여넣기(Ctrl+V) 해주세요.
           </div>
         </div>
       </div>
@@ -908,13 +908,8 @@
           <option value="14YI48">18. 황*근</option>
         </select>
 
-        <!-- 2. 코드 표시 및 복사 -->
-        <div style="display: flex; gap: 6px; align-items: center;">
-          <div id="secCodeDisplay" class="survey-code-pill">------</div>
-          <button type="button" id="secCopyBtn" onclick="copySelectedStudentCode()" class="survey-btn-copy" disabled>
-            복사
-          </button>
-        </div>
+        <!-- 2. 참여코드 표시 (클릭 시 다시 복사) -->
+        <div id="secCodeDisplay" class="survey-code-pill" onclick="copySelectedStudentCode()" style="cursor: pointer;" title="참여코드 (클릭 시 다시 복사)">------</div>
 
         <!-- 3. 설문조사 바로가기 버튼 -->
         <a href="https://newsac.kosac.re.kr/public/survey" target="_blank" rel="noopener noreferrer" class="survey-btn-go">
@@ -962,8 +957,7 @@
           <div class="card-body">
             <div class="card-top-row">
               <span class="badge badge-primary">코딩 실습</span>
-              <span style="font-size: 11px; color: var(--text-muted);">1~8차시 사용</span>
-            </div>
+              </div>
             <div class="card-title-group">
               <div class="card-type-box" style="background:#e0f2fe; color:#0369a1; border-color:#bae6fd;">01</div>
               <div class="card-heading">마이크로비트 코딩 (MakeCode)</div>
@@ -982,8 +976,7 @@
           <div class="card-body">
             <div class="card-top-row">
               <span class="badge badge-blue">인공지능(AI) 학습</span>
-              <span style="font-size: 11px; color: var(--text-muted);">4, 7차시 사용</span>
-            </div>
+              </div>
             <div class="card-title-group">
               <div class="card-type-box" style="background:#fef3c7; color:#b45309; border-color:#fde68a;">02</div>
               <div class="card-heading">인공지능 모델 만들기 (티처블머신)</div>
@@ -1002,8 +995,7 @@
           <div class="card-body">
             <div class="card-top-row">
               <span class="badge" style="background:#cffafe; color:#0e7490; border:1px solid #a5f3fc;">알고리즘 설계</span>
-              <span style="font-size: 11px; color: var(--text-muted);">조건문 판단 실습</span>
-            </div>
+              </div>
             <div class="card-title-group">
               <div class="card-type-box" style="background:#cffafe; color:#0e7490; border-color:#a5f3fc;">03</div>
               <div>
@@ -1454,12 +1446,8 @@
             <option value="14YI48">18. 황*근</option>
           </select>
 
-          <div style="display: flex; gap: 6px; align-items: center;">
-            <div id="modalCodeDisplay" class="survey-code-pill" style="min-width: 90px; height: 44px; font-size: 16px;">------</div>
-            <button type="button" id="modalCopyBtn" onclick="copySelectedStudentCode()" class="survey-btn-copy" disabled>
-              복사
-            </button>
-          </div>
+          <!-- 참여코드 표시 (클릭 시 다시 복사) -->
+          <div id="modalCodeDisplay" class="survey-code-pill" onclick="copySelectedStudentCode()" style="min-width: 90px; height: 44px; font-size: 16px; cursor: pointer;" title="참여코드 (클릭 시 다시 복사)">------</div>
         </div>
 
         <div id="modalCopyNotice" style="display: none; margin-top: 8px; font-size: 12px; color: var(--primary); font-weight: 700;">
