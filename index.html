@@ -575,9 +575,56 @@
     }
 
     /* 차시별 수업 교재 (2개 일차) */
+        /* 차시별 안내 일차 선택 탭 버튼 */
+    .day-filter-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .day-filter-btn {
+      padding: 11px 20px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 800;
+      border: 1.5px solid var(--border-color);
+      background: #ffffff;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .day-filter-btn:hover {
+      border-color: #94a3b8;
+      color: var(--text-main);
+      transform: translateY(-1px);
+    }
+
+    .day-filter-btn.active-green {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 3px 10px rgba(21, 128, 61, 0.25);
+    }
+
+    .day-filter-btn.active-blue {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #ffffff;
+      box-shadow: 0 3px 10px rgba(2, 132, 199, 0.25);
+    }
+
+    .day-lessons-body {
+      transition: all 0.3s ease;
+    }
+
     .curriculum-wrap {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
       gap: 18px;
     }
 
@@ -892,7 +939,7 @@
       </a>
       <a href="#curriculum" class="quick-nav-pill">
         <span class="quick-nav-num">3</span>
-        <span class="quick-nav-text">수업 교재 보기 (1~8차시)</span>
+        <span class="quick-nav-text">차시별 수업 안내 (1~8차시)</span>
       </a>
     </nav>
 
@@ -926,7 +973,7 @@
             </p>
           </div>
           <a href="https://makecode.microbit.org/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">
-            메이크코드 바로 열기 ↗
+            바로가기 ↗
           </a>
         </div>
 
@@ -946,7 +993,7 @@
             </p>
           </div>
           <a href="https://teachablemachine.withgoogle.com/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="width: 100%; border-color: #7dd3fc; color: #0284c7; font-weight: 800;">
-            티처블머신 바로 열기 ↗
+            바로가기 ↗
           </a>
         </div>
 
@@ -969,7 +1016,7 @@
             </p>
           </div>
           <a href="https://ifelse-delta.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="width: 100%; border-color: #a5f3fc; color: #0891b2; font-weight: 800;">
-            ifelse 바로 열기 ↗
+            바로가기 ↗
           </a>
         </div>
       </div>
@@ -1127,97 +1174,117 @@
     <section id="curriculum" class="content-section">
       <div class="section-head">
         <div class="section-head-title">
-          <span>03. 수업 교재 보기 (1~8차시)</span>
+          <span>03. 차시별 수업 안내</span>
         </div>
         <div class="section-head-desc">
           차시를 누르면 해당 수업의 PPT 슬라이드 교재를 화면에서 바로 넘겨보거나 내려받을 수 있습니다.
         </div>
       </div>
 
+      <!-- 1일차 / 2일차 전환 및 내용 숨기기/확인 버튼 -->
+      <div class="day-filter-tabs">
+        <button type="button" id="dayFilterBtn1" class="day-filter-btn active-green" onclick="toggleCurriculumDay(1)">
+          1일차 수업 (11월 23일 • 1~4차시)
+        </button>
+        <button type="button" id="dayFilterBtn2" class="day-filter-btn" onclick="toggleCurriculumDay(2)">
+          2일차 수업 (11월 26일 • 5~8차시)
+        </button>
+      </div>
+
       <div class="curriculum-wrap">
-        <!-- 1일차 -->
-        <div class="day-box">
-          <div class="day-box-head">
+        <!-- 1일차 수업 내용 -->
+        <div class="day-box" id="curriculumDay1">
+          <div class="day-box-head" onclick="toggleCurriculumBody(1)" style="cursor: pointer;" title="클릭하여 차시별 수업내용 접기/펼치기">
             <div class="day-box-title">
               <span>1일차 수업</span>
               <span style="font-size: 13px; font-weight: 700; color: var(--primary);">11월 23일 (월)</span>
             </div>
-            <span class="badge badge-primary">1~4차시</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="badge badge-primary">1~4차시</span>
+              <span id="dayToggleLabel1" style="font-size: 11.5px; font-weight: 800; color: #64748b; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 4px; padding: 3px 8px;">내용 접기 ▲</span>
+            </div>
           </div>
 
-          <div class="lesson-item" onclick="openCurriculumModal(1)">
-            <div class="lesson-left">
-              <div class="lesson-title-text">1차시: 식물에게 무슨 일이 생겼을까?</div>
-              <div class="lesson-sub-text">식물의 돌봄 문제 발견하기 • 관찰과 추측 구분하기</div>
+          <div id="dayLessonsBody1" class="day-lessons-body">
+            <div class="lesson-item" onclick="openCurriculumModal(1)">
+              <div class="lesson-left">
+                <div class="lesson-title-text">1차시: 식물에게 무슨 일이 생겼을까?</div>
+                <div class="lesson-sub-text">식물의 돌봄 문제 발견하기 • 관찰과 추측 구분하기</div>
+              </div>
+              <span class="lesson-view-tag">교재 보기 19p ↗</span>
             </div>
-            <span class="lesson-view-tag">교재 보기 19p ↗</span>
-          </div>
 
-          <div class="lesson-item" onclick="openCurriculumModal(2)">
-            <div class="lesson-left">
-              <div class="lesson-title-text">2차시: 센서로 식물의 마음 읽기</div>
-              <div class="lesson-sub-text">빛 센서와 토양 수분 센서로 환경 데이터 측정하기</div>
+            <div class="lesson-item" onclick="openCurriculumModal(2)">
+              <div class="lesson-left">
+                <div class="lesson-title-text">2차시: 센서로 식물의 마음 읽기</div>
+                <div class="lesson-sub-text">빛 센서와 토양 수분 센서로 환경 데이터 측정하기</div>
+              </div>
+              <span class="lesson-view-tag">교재 보기 41p ↗</span>
             </div>
-            <span class="lesson-view-tag">교재 보기 41p ↗</span>
-          </div>
 
-          <div class="lesson-item" onclick="openCurriculumModal(3)">
-            <div class="lesson-left">
-              <div class="lesson-title-text">3차시: 식물 상태 알리미 만들기</div>
-              <div class="lesson-sub-text">물이 부족할 때 LED 불빛과 소리로 알려주는 코딩</div>
+            <div class="lesson-item" onclick="openCurriculumModal(3)">
+              <div class="lesson-left">
+                <div class="lesson-title-text">3차시: 식물 상태 알리미 만들기</div>
+                <div class="lesson-sub-text">물이 부족할 때 LED 불빛과 소리로 알려주는 코딩</div>
+              </div>
+              <span class="lesson-view-tag">교재 보기 29p ↗</span>
             </div>
-            <span class="lesson-view-tag">교재 보기 29p ↗</span>
-          </div>
 
-          <div class="lesson-item" onclick="openCurriculumModal(4)">
-            <div class="lesson-left">
-              <div class="lesson-title-text">4차시: AI 식물 의사 만들기</div>
-              <div class="lesson-sub-text">티처블머신으로 아픈 잎을 찾아내는 인공지능 학습</div>
+            <div class="lesson-item" onclick="openCurriculumModal(4)">
+              <div class="lesson-left">
+                <div class="lesson-title-text">4차시: AI 식물 의사 만들기</div>
+                <div class="lesson-sub-text">티처블머신으로 아픈 잎을 찾아내는 인공지능 학습</div>
+              </div>
+              <span class="lesson-view-tag">교재 보기 37p ↗</span>
             </div>
-            <span class="lesson-view-tag">교재 보기 37p ↗</span>
           </div>
         </div>
 
-        <!-- 2일차 -->
-        <div class="day-box">
-          <div class="day-box-head">
+        <!-- 2일차 수업 내용 -->
+        <div class="day-box" id="curriculumDay2" style="display: none;">
+          <div class="day-box-head" onclick="toggleCurriculumBody(2)" style="cursor: pointer;" title="클릭하여 차시별 수업내용 접기/펼치기">
             <div class="day-box-title">
               <span>2일차 수업</span>
               <span style="font-size: 13px; font-weight: 700; color: var(--blue);">11월 26일 (목)</span>
             </div>
-            <span class="badge badge-blue">5~8차시</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="badge badge-blue">5~8차시</span>
+              <span id="dayToggleLabel2" style="font-size: 11.5px; font-weight: 800; color: #64748b; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 4px; padding: 3px 8px;">내용 접기 ▲</span>
+            </div>
           </div>
 
-          <div class="lesson-item" onclick="openCurriculumModal(5)">
-            <div class="lesson-left">
-              <div class="lesson-title-text">5차시: 스마트팜 키트 조립하기</div>
-              <div class="lesson-sub-text">온실 집 외형 조립 • 모터와 센서 전선 바르게 연결하기</div>
+          <div id="dayLessonsBody2" class="day-lessons-body">
+            <div class="lesson-item" onclick="openCurriculumModal(5)">
+              <div class="lesson-left">
+                <div class="lesson-title-text">5차시: 스마트팜 키트 조립하기</div>
+                <div class="lesson-sub-text">온실 집 외형 조립 • 모터와 센서 전선 바르게 연결하기</div>
+              </div>
+              <span class="lesson-view-tag" style="color:var(--blue); background:var(--blue-light); border-color:var(--blue-border);">교재 보기 15p ↗</span>
             </div>
-            <span class="lesson-view-tag" style="color:var(--blue); background:var(--blue-light); border-color:var(--blue-border);">교재 보기 15p ↗</span>
-          </div>
 
-          <div class="lesson-item" onclick="openCurriculumModal(6)">
-            <div class="lesson-left">
-              <div class="lesson-title-text">6차시: 자동 물주기 장치 만들기</div>
-              <div class="lesson-sub-text">토양 수분에 따라 워터펌프가 자동으로 물을 주는 코딩</div>
+            <div class="lesson-item" onclick="openCurriculumModal(6)">
+              <div class="lesson-left">
+                <div class="lesson-title-text">6차시: 자동 물주기 장치 만들기</div>
+                <div class="lesson-sub-text">토양 수분에 따라 워터펌프가 자동으로 물을 주는 코딩</div>
+              </div>
+              <span class="lesson-view-tag" style="color:var(--blue); background:var(--blue-light); border-color:var(--blue-border);">교재 보기 30p ↗</span>
             </div>
-            <span class="lesson-view-tag" style="color:var(--blue); background:var(--blue-light); border-color:var(--blue-border);">교재 보기 30p ↗</span>
-          </div>
 
-          <div class="lesson-item" onclick="openCurriculumModal(7)">
-            <div class="lesson-left">
-              <div class="lesson-title-text">7차시: 나만의 특별한 스마트팜 꾸미기</div>
-              <div class="lesson-sub-text">우리 모둠만의 아이디어 기능 추가 및 작동 시험</div>
+            <div class="lesson-item" onclick="openCurriculumModal(7)">
+              <div class="lesson-left">
+                <div class="lesson-title-text">7차시: 나만의 특별한 스마트팜 꾸미기</div>
+                <div class="lesson-sub-text">우리 모둠만의 아이디어 기능 추가 및 작동 시험</div>
+              </div>
+              <span class="lesson-view-tag" style="color:var(--blue); background:var(--blue-light); border-color:var(--blue-border);">교재 보기 15p ↗</span>
             </div>
-            <span class="lesson-view-tag" style="color:var(--blue); background:var(--blue-light); border-color:var(--blue-border);">교재 보기 15p ↗</span>
-          </div>
 
-          <div class="lesson-item" onclick="openCurriculumModal(8)">
-            <div class="lesson-left">
-              <div class="lesson-title-text">8차시: 우리가 만든 스마트팜 발표하기</div>
-              <div class="lesson-sub-text">완성 작품 시연 및 친구들에게 발표 • 만족도 설문조사</div>
+            <div class="lesson-item" onclick="openCurriculumModal(8)">
+              <div class="lesson-left">
+                <div class="lesson-title-text">8차시: 우리가 만든 스마트팜 발표하기</div>
+                <div class="lesson-sub-text">완성 작품 시연 및 친구들에게 발표 • 만족도 설문조사</div>
+              </div>
+              <span class="lesson-view-tag" style="color:var(--blue); background:var(--blue-light); border-color:var(--blue-border);">교재 보기 8p ↗</span>
             </div>
-            <span class="lesson-view-tag" style="color:var(--blue); background:var(--blue-light); border-color:var(--blue-border);">교재 보기 8p ↗</span>
           </div>
         </div>
       </div>
