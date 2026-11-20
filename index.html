@@ -575,57 +575,14 @@
     }
 
     /* 차시별 수업 교재 (2개 일차) */
-        /* 차시별 안내 일차 선택 탭 버튼 */
-    .day-filter-tabs {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-
-    .day-filter-btn {
-      padding: 11px 20px;
-      border-radius: var(--radius-md);
-      font-size: 14px;
-      font-weight: 800;
-      border: 1.5px solid var(--border-color);
-      background: #ffffff;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .day-filter-btn:hover {
-      border-color: #94a3b8;
-      color: var(--text-main);
-      transform: translateY(-1px);
-    }
-
-    .day-filter-btn.active-green {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: #ffffff;
-      box-shadow: 0 3px 10px rgba(21, 128, 61, 0.25);
-    }
-
-    .day-filter-btn.active-blue {
-      background: var(--blue);
-      border-color: var(--blue);
-      color: #ffffff;
-      box-shadow: 0 3px 10px rgba(2, 132, 199, 0.25);
-    }
-
-    .day-lessons-body {
-      transition: all 0.3s ease;
+        .day-lessons-body {
+      transition: all 0.25s ease;
     }
 
     .curriculum-wrap {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
     }
 
     .day-box {
@@ -1173,27 +1130,17 @@
         </div>
       </div>
 
-      <!-- 1일차 / 2일차 전환 및 내용 숨기기/확인 버튼 -->
-      <div class="day-filter-tabs">
-        <button type="button" id="dayFilterBtn1" class="day-filter-btn active-green" onclick="toggleCurriculumDay(1)">
-          1일차 수업 (11월 23일 • 1~4차시)
-        </button>
-        <button type="button" id="dayFilterBtn2" class="day-filter-btn" onclick="toggleCurriculumDay(2)">
-          2일차 수업 (11월 26일 • 5~8차시)
-        </button>
-      </div>
-
       <div class="curriculum-wrap">
-        <!-- 1일차 수업 내용 -->
-        <div class="day-box" id="curriculumDay1">
-          <div class="day-box-head" onclick="toggleCurriculumBody(1)" style="cursor: pointer;" title="클릭하여 차시별 수업내용 접기/펼치기">
+        <!-- 1일차 수업 내용 (1~4차시) -->
+        <div class="day-box" id="curriculumDay1" style="border-top: 4px solid var(--primary);">
+          <div class="day-box-head" onclick="toggleCurriculumBody(1)" style="cursor: pointer;" title="클릭하여 1일차 수업내용 접기/펼치기">
             <div class="day-box-title">
               <span>1일차 수업</span>
-              <span style="font-size: 13px; font-weight: 700; color: var(--primary);">11월 23일 (월)</span>
+              <span style="font-size: 13.5px; font-weight: 700; color: var(--primary); margin-left: 6px;">11월 23일 (월)</span>
             </div>
             <div style="display: flex; align-items: center; gap: 8px;">
               <span class="badge badge-primary">1~4차시</span>
-              <span id="dayToggleLabel1" style="font-size: 11.5px; font-weight: 800; color: #64748b; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 4px; padding: 3px 8px;">내용 접기 ▲</span>
+              <span id="dayToggleLabel1" class="btn btn-outline" style="min-height: 28px; padding: 2px 10px; font-size: 11px; font-weight: 800; color: #475569; border-color: #cbd5e1; background: #ffffff;">내용 접기 ▲</span>
             </div>
           </div>
 
@@ -1232,16 +1179,16 @@
           </div>
         </div>
 
-        <!-- 2일차 수업 내용 -->
-        <div class="day-box" id="curriculumDay2" style="display: none;">
-          <div class="day-box-head" onclick="toggleCurriculumBody(2)" style="cursor: pointer;" title="클릭하여 차시별 수업내용 접기/펼치기">
+        <!-- 2일차 수업 내용 (5~8차시) -->
+        <div class="day-box" id="curriculumDay2" style="border-top: 4px solid var(--blue);">
+          <div class="day-box-head" onclick="toggleCurriculumBody(2)" style="cursor: pointer;" title="클릭하여 2일차 수업내용 접기/펼치기">
             <div class="day-box-title">
               <span>2일차 수업</span>
-              <span style="font-size: 13px; font-weight: 700; color: var(--blue);">11월 26일 (목)</span>
+              <span style="font-size: 13.5px; font-weight: 700; color: var(--blue); margin-left: 6px;">11월 26일 (목)</span>
             </div>
             <div style="display: flex; align-items: center; gap: 8px;">
               <span class="badge badge-blue">5~8차시</span>
-              <span id="dayToggleLabel2" style="font-size: 11.5px; font-weight: 800; color: #64748b; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 4px; padding: 3px 8px;">내용 접기 ▲</span>
+              <span id="dayToggleLabel2" class="btn btn-outline" style="min-height: 28px; padding: 2px 10px; font-size: 11px; font-weight: 800; color: #475569; border-color: #cbd5e1; background: #ffffff;">내용 접기 ▲</span>
             </div>
           </div>
 
@@ -1522,6 +1469,20 @@
       7: { num: 7, title: "7차시: 나만의 특별한 스마트팜 꾸미기", pageCount: 15, fileSize: "2.2MB", pdfUrl: "./curriculum_lessons/lesson_7.pdf" },
       8: { num: 8, title: "8차시: 우리가 만든 스마트팜 발표하기", pageCount: 8, fileSize: "876KB", pdfUrl: "./curriculum_lessons/lesson_8.pdf" }
     };
+
+    // 카드 헤더 클릭 시 차시별 수업내용 접기/펼치기 (숨기기 & 확인)
+    function toggleCurriculumBody(day) {
+      const body = document.getElementById("dayLessonsBody" + day);
+      const label = document.getElementById("dayToggleLabel" + day);
+      if (!body) return;
+      if (body.style.display === "none") {
+        body.style.display = "block";
+        if (label) label.textContent = "내용 접기 ▲";
+      } else {
+        body.style.display = "none";
+        if (label) label.textContent = "내용 확인 ▼";
+      }
+    }
 
     function openCurriculumModal(lessonNum = 1) {
       switchCurriculumLesson(lessonNum);
