@@ -796,7 +796,7 @@
             <span>만족도 조사 (학생코드 복사)</span>
           </button>
           <button onclick="openSiteQrModal()" class="btn btn-outline" style="min-height: 38px; padding: 6px 12px; font-size: 12px;">
-            <span>스마트폰 접속 QR</span>
+            <span>QR 접속하기</span>
           </button>
         </div>
       </div>
@@ -959,7 +959,10 @@
             </div>
             <div class="card-title-group">
               <div class="card-type-box" style="background:#cffafe; color:#0e7490; border-color:#a5f3fc;">03</div>
-              <div class="card-heading">AI 모델학습 (ifelse)</div>
+              <div>
+                <div class="card-heading">AI 모델학습 (ifelse)</div>
+                <div style="font-size: 11px; color: #0e7490; font-family: monospace; margin-top: 1px;">ifelse-delta.vercel.app</div>
+              </div>
             </div>
             <p class="card-text">
               If-Else 조건문과 환경 데이터를 연결하여 AI 식물의사의 판단 규칙을 설계하는 실습 사이트입니다.
@@ -986,31 +989,6 @@
       </div>
 
       <div class="grid-3">
-        <!-- 1. 스마트팜 참고 회로도 -->
-        <div class="simple-card" style="border: 2px solid #bae6fd; background: #f0f9ff;">
-          <div class="card-body">
-            <div class="card-top-row">
-              <span class="badge badge-blue">필수 전선 연결 그림</span>
-              <span style="font-size: 11px; font-weight: 800; color: #0284c7;">확대 보기 지원</span>
-            </div>
-            <div class="card-title-group">
-              <div class="card-type-box">PNG</div>
-              <div class="card-heading">스마트팜 전선 연결도 (회로도)</div>
-            </div>
-            <p class="card-text">
-              빛 센서, 토양 수분 센서, 워터펌프, 레인보우 LED 전선을 보드 어디에 꽂아야 하는지 한눈에 보여주는 그림입니다.
-            </p>
-          </div>
-          <div style="display: flex; gap: 8px;">
-            <button type="button" onclick="openCircuitModal()" class="btn btn-primary" style="flex: 2; background: #0284c7;">
-              그림 크게보기
-            </button>
-            <a href="./smartfarm-circuit.png" download="스마트팜_참고_회로도.png" class="btn btn-outline" style="flex: 1; padding: 6px 10px; font-size: 12px;">
-              그림 저장
-            </a>
-          </div>
-        </div>
-
         <!-- 2. 식물의사.hex -->
         <div class="simple-card">
           <div class="card-body">
@@ -1114,6 +1092,31 @@
           <a href="./자료드라이브(다운받아주세요)/테스트용 - 추가미션.zip" download="테스트용_추가미션.zip" class="btn btn-outline" style="width: 100%;">
             추가 미션 받기 (.zip)
           </a>
+        </div>
+
+        <!-- 6. 스마트팜 참고 회로도 (마지막 위치) -->
+        <div class="simple-card" style="border: 2px solid #bae6fd; background: #f0f9ff;">
+          <div class="card-body">
+            <div class="card-top-row">
+              <span class="badge badge-blue">필수 전선 연결 그림</span>
+              <span style="font-size: 11px; font-weight: 800; color: #0284c7;">확대 보기 지원</span>
+            </div>
+            <div class="card-title-group">
+              <div class="card-type-box" style="background:#e0f2fe; color:#0369a1; border-color:#bae6fd;">PNG</div>
+              <div class="card-heading">스마트팜 전선 연결도 (회로도)</div>
+            </div>
+            <p class="card-text">
+              빛 센서, 토양 수분 센서, 워터펌프, 레인보우 LED 전선을 보드 어디에 꽂아야 하는지 한눈에 보여주는 그림입니다.
+            </p>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button type="button" onclick="openCircuitModal()" class="btn btn-primary" style="flex: 2; background: #0284c7;">
+              그림 크게보기
+            </button>
+            <a href="./smartfarm-circuit.png" download="스마트팜_참고_회로도.png" class="btn btn-outline" style="flex: 1; padding: 6px 10px; font-size: 12px;">
+              그림 저장
+            </a>
+          </div>
         </div>
       </div>
     </section>
